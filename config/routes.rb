@@ -18,76 +18,46 @@ Rails.application.routes.draw do
 # 顧客用
   root to: 'public/homes#top'
   get '/about' => 'public/homes#about', as: 'about'
-  
+
+  get '/users/my_page' => 'public/users#show', as: 'mypage'
+  get '/users/information/edit' => 'public/users#edit', as: 'edit_user'
+  patch '/users/information' => 'public/users#update', as: 'user'
+  get '/users/unsubscribe' => 'public/users#unsubscribe', as: 'unsubscribe'
+  patch '/users/withdraw' => 'public/users#withdraw', as: 'withdraw'
+  get '/users/favorites' => 'public/users#favorites', as: 'favorites'
+
+  delete '/cart_items/destroy_all' => 'public/cart_items#destroy_all', as: 'destroy_all'
+
+  post '/orders/confirm' => 'public/orders#confirm', as: 'orders_confirm'
+  get '/orders/thanks' => 'public/orders#thanks', as: 'thanks'
+
+  scope module: :public do
+    resources :items, only:[:index, :show] do
+      resource :favorite, only:[:create, :destroy]
+      resources :reviews, only:[:new, :create, :index]
+        post '/reviews/confirm' => 'reviews#confirm', as: 'reviews_confirm'
+    end
+    resources :cart_items, only:[:index, :create, :destroy, :update]
+    resources :orders, only:[:new, :create, :index, :show]
+    resources :addresses, only:[:index, :create, :edit, :update, :destroy]
+    resources :notices, only:[:index, :show]
+    resources :tags, only:[:index]
+  end
+# 管理者用
+  namespace :admin do
+    root to: 'homes#top'
+
+    resources :items, only:[:new, :create, :index, :show, :edit, :update] do
+      resources :reviews, only:[:index, :destroy]
+    end
+    resources :users, only:[:index, :show, :edit, :update]
+    resources :tags, only:[:index, :create, :edit, :update]
+    resources :notices, only:[:new, :create, :index, :show, :edit, :update, :destroy]
+    resources :notice_genres, only:[:index, :create, :edit, :update]
+    resources :orders, only:[:show, :update]
+    resources :order_details, only:[:update]
+  end
 
 
 
-  namespace :admin do
-    get 'orders/show'
-  end
-  namespace :admin do
-    get 'notice_genres/index'
-    get 'notice_genres/edit'
-  end
-  namespace :admin do
-    get 'notices/new'
-    get 'notices/index'
-    get 'notices/show'
-    get 'notices/edit'
-  end
-  namespace :admin do
-    get 'tags/index'
-    get 'tags/edit'
-  end
-  namespace :admin do
-    get 'reviews/index'
-  end
-  namespace :admin do
-    get 'users/index'
-    get 'users/show'
-    get 'users/edit'
-  end
-  namespace :admin do
-    get 'items/new'
-    get 'items/index'
-    get 'items/show'
-    get 'items/edit'
-  end
-  namespace :admin do
-    get 'homes/top'
-  end
-  namespace :public do
-    get 'tags/index'
-  end
-  namespace :public do
-    get 'reviews/new'
-    get 'reviews/index'
-  end
-  namespace :public do
-    get 'notices/index'
-    get 'notices/show'
-  end
-  namespace :public do
-    get 'addresses/index'
-    get 'addresses/edit'
-  end
-  namespace :public do
-    get 'orders/new'
-    get 'orders/thanks'
-    get 'orders/index'
-    get 'orders/show'
-  end
-  namespace :public do
-    get 'cart_items/index'
-  end
-  namespace :public do
-    get 'users/show'
-    get 'users/edit'
-    get 'users/unsubscribe'
-    get 'users/favorites'
-  end
-  namespace :public do
-    get 'items/index'
-    get 'items/show'
-  end
 end
