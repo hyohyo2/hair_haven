@@ -1,4 +1,5 @@
 class Admin::ItemsController < ApplicationController
+  # before_action :authenticate_admin!
   
 # 商品新規登録フォーム
   def new
