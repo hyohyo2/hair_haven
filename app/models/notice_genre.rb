@@ -1,0 +1,2 @@
+class NoticeGenre < ApplicationRecord
+end
