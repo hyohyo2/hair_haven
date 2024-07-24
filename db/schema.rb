@@ -103,7 +103,7 @@ ActiveRecord::Schema.define(version: 2024_07_24_055536) do
   end
 
   create_table "notices", force: :cascade do |t|
-    t.integer "genre_id", null: false
+    t.integer "notice_genre_id", null: false
     t.string "title", null: false
     t.text "detail", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -158,7 +158,7 @@ ActiveRecord::Schema.define(version: 2024_07_24_055536) do
     t.string "first_name", null: false
     t.string "last_name_kana", null: false
     t.string "first_name_kana", null: false
-    t.integer "gender", null: false
+    t.integer "gender", default: 0, null: false
     t.string "post_code", null: false
     t.string "address", null: false
     t.string "telephone_number", null: false
