@@ -10,6 +10,15 @@
   margin: 20px 0;
 }
 
+// エラー時フォームレイアウト保持
+.field_with_errors{
+  display: contents;
+}
+
+li{
+  list-style: none;
+}
+
 .radio_button{
   position: relative;
   margin-right: 20px;
