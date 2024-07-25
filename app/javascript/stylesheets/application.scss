@@ -1,1 +1,17 @@
 @use '~bootstrap/scss/bootstrap';
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.field{
+  margin: 20px 0;
+}
+
+.radio_button{
+  position: relative;
+  margin-right: 20px;
+  vertical-align: middle;
+}
