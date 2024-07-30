@@ -83,7 +83,7 @@
     <div class="field d-flex">
       <div class="col-3 text-center">
         <label>
-          メールアドレス
+          パスワード
           <% if @minimum_password_length %>
             (<%= @minimum_password_length %> 文字以上)
           <% end %>
@@ -96,7 +96,7 @@
 
     <div class="field d-flex">
       <div class="col-3 text-center">
-        <label>メールアドレス</label>
+        <label>パスワード</label>
       </div>
       <div class="col-6 d-flex text-center">
         <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
