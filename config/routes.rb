@@ -31,6 +31,8 @@ Rails.application.routes.draw do
   post '/orders/confirm' => 'public/orders#confirm', as: 'orders_confirm'
   get '/orders/thanks' => 'public/orders#thanks', as: 'thanks'
 
+  get '/users' => redirect("/users/sign_up")
+
   scope module: :public do
     resources :items, only:[:index, :show] do
       resource :favorite, only:[:create, :destroy]

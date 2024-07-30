@@ -1,6 +1,10 @@
 ja:
   activerecord:
     attributes:
+      admin:
+        email: メールアドレス
+        password: パスワード
+        remember_me: ログインを記憶する
       user:
         confirmation_sent_at: パスワード確認送信時刻
         confirmation_token: パスワード確認用トークン
@@ -9,7 +13,7 @@ ja:
         current_password: 現在のパスワード
         current_sign_in_at: 現在のログイン時刻
         current_sign_in_ip: 現在のログインIPアドレス
-        email: Eメール
+        email: メールアドレス
         encrypted_password: 暗号化パスワード
         failed_attempts: 失敗したログイン試行回数
         last_sign_in_at: 最終ログイン時刻
@@ -25,6 +29,14 @@ ja:
         unconfirmed_email: 未確認Eメール
         unlock_token: ロック解除用トークン
         updated_at: 更新日
+        last_name: 氏名(姓)
+        first_name: 氏名(名)
+        last_name_kana: フリガナ(姓)
+        first_name_kana: フリガナ(名)
+        gender: 性別
+        post_code: 郵便番号
+        address: 住所
+        telephone_number: 電話番号
     models:
       user: ユーザー
   devise:
@@ -140,4 +152,4 @@ ja:
       not_locked: はロックされていません。
       not_saved:
         one: エラーが発生したため %{resource} は保存されませんでした。
-        other: "%{count} 件のエラーが発生したため %{resource} は保存されませんでした。"
+        other: "%{count} 件のエラーが発生しました。"
