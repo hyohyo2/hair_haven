@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
 # 顧客用
   root to: 'public/homes#top'
-  get '/about' => 'public/homes#about', as: 'about'
+  get '/about' => 'public/homes#about'
 
   get '/users/my_page' => 'public/users#show', as: 'mypage'
   get '/users/information/edit' => 'public/users#edit', as: 'edit_user'
