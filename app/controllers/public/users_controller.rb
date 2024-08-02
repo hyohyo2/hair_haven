@@ -13,8 +13,13 @@ class Public::UsersController < ApplicationController
   # 会員情報の更新処理
   def update
     @user = current_user
-    @user.update(user_params)
-    redirect_to mypage_path
+    if @user.update(user_params)
+      flash[:notice] = "会員情報を更新しました。"
+      redirect_to mypage_path
+    else
+      flash.now[:alert] = "会員情報の更新に失敗しました。"
+      render :edit
+    end
   end
 
   # 退会確認画面

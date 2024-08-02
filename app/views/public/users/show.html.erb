@@ -1,4 +1,8 @@
 <div class="container my-3">
+  <% flash.each do |message_type, message| %>
+    <div class="flash-message <%= message_type %>"><%= message %></div>
+  <% end %>
+
   <div>
     <%= current_user.last_name %>
     <%= current_user.first_name %>

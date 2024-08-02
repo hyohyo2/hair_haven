@@ -1,5 +1,12 @@
 <div class="container my-3">
+  <% flash.each do |message_type, message| %>
+    <div class="flash-message <%= message_type %>"><%= message %></div>
+  <% end %>
+
   <h2 class="text-center">登録情報編集</h2>
+    <div class="text-center">
+      <%= render "layouts/errors", obj: @user %>
+    </div>
   <%= form_with model: @user do |f| %>
     <div class="field d-flex">
       <div class="col-3 text-center">
@@ -78,7 +85,7 @@
     </div>
 
     <div class="actions text-center">
-      <%= f.submit "情報を更新する", class: "btn btn-success col-3" %>
+      <%= f.submit "情報を更新する", class: "btn btn-success col-3", "data-confirm" => "本当に変更しますか？" %>
     </div>
   <% end %>
 </div>

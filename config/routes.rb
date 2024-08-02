@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   get '/orders/thanks' => 'public/orders#thanks', as: 'thanks'
 
   get '/users' => redirect("/users/sign_up")
+  get '/users/information' => redirect("/users/information/edit")
 
   scope module: :public do
     resources :items, only:[:index, :show] do
