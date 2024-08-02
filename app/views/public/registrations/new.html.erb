@@ -1,5 +1,9 @@
 
 <div class="container my-3">
+
+  <% if @user.errors.any? %>
+    <div class="flash-message alert">新規登録に失敗しました。</div>
+  <% end %>
   <h2 class="text-center">新規登録</h2>
   <%= form_with model: @user, url: user_registration_path do |f| %>
     <%= render "public/shared/error_messages", resource: resource %>

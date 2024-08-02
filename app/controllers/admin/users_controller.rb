@@ -3,6 +3,7 @@ class Admin::UsersController < ApplicationController
 
   # 会員一覧
   def index
+    @users = User.all
   end
 
   # 会員詳細
