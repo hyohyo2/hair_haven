@@ -16,8 +16,10 @@
           <%= user.id %>
         </td>
         <td>
-          <%= user.last_name %>
-          <%= user.first_name %>
+          <%= link_to admin_user_path(user.id) do %>
+            <%= user.last_name %>
+            <%= user.first_name %>
+          <% end %>
         </td>
         <td>
           <%= user.email %>
