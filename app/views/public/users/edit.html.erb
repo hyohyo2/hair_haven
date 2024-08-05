@@ -85,7 +85,12 @@
     </div>
 
     <div class="actions text-center">
-      <%= f.submit "情報を更新する", class: "btn btn-success col-3", "data-confirm" => "本当に変更しますか？" %>
+      <div class="my-3">
+        <%= f.submit "情報を更新する", class: "btn btn-success col-3", "data-confirm" => "本当に変更しますか？" %>
+      </div>
+      <div>
+        <%= link_to "退会する", unsubscribe_path, class: "btn btn-danger col-3" %>
+      </div>
     </div>
   <% end %>
 </div>

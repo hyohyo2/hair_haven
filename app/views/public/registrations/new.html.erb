@@ -1,5 +1,9 @@
 
 <div class="container my-3">
+  <!--フラッシュメッセージ(退会ユーザーがログインしようとすると表示)-->
+  <% flash.each do |message_type, message| %>
+    <div class="flash-message <%= message_type %>"><%= message %></div>
+  <% end %>
 
   <% if @user.errors.any? %>
     <div class="flash-message alert">新規登録に失敗しました。</div>

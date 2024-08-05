@@ -28,7 +28,10 @@ class Public::UsersController < ApplicationController
 
   # 退会の処理
   def withdraw
-
+    current_user.update(is_active: false)
+    reset_session
+    flash[:notice] = "退会処理を完了しました。"
+    redirect_to root_path
   end
 
   # いいねした商品一覧
