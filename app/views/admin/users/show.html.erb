@@ -1,2 +1,72 @@
-<h1>Admin::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
+<div class="container my-3">
+  <% flash.each do |message_type, message| %>
+    <div class="flash-message <%= message_type %>"><%= message %></div>
+  <% end %>
+  <div class="text-center">
+    <div class="my-3">
+      <span class="col-3">
+        会員ID：
+      </span>
+      <%= @user.id %>
+    </div>
+    <div class="my-3">
+      <span class="col-3">
+        氏名：
+      </span>
+      <%= @user.last_name %>
+      <%= @user.first_name %>
+    </div>
+    <div class="my-3">
+      <span class="col-3">
+        氏名(カナ)：
+      </span>
+      <%= @user.last_name_kana %>
+      <%= @user.first_name_kana %>
+    </div>
+    <div class="my-3">
+      <span class="col-3">
+        性別：
+      </span>
+      <%= @user.gender_i18n %>
+    </div>
+    <div class="my-3">
+      <span class="col-3">
+        メールアドレス：
+      </span>
+      <%= @user.email %>
+    </div>
+    <div class="my-3">
+      <span class="col-3">
+        郵便番号：
+      </span>
+      〒<%= @user.post_code %>
+    </div>
+    <div class="my-3">
+      <span class="col-3">
+        住所：
+      </span>
+      <%= @user.address %>
+    </div>
+    <div class="my-3">
+      <span class="col-3">
+        電話番号：
+      </span>
+      <%= @user.telephone_number %>
+    </div>
+    <div class="my-3">
+      <span class="col-3">
+        ステータス：
+      </span>
+      <% if @user.is_active == true %>
+        <span class="text-primary">有効</span>
+      <% else %>
+        <span class="text-secondary">無効</span>
+      <% end %>
+    </div>
+    <div>
+      <%= link_to "編集する", edit_admin_user_path, class: "btn btn-secondary" %>
+      <!--ユーザー毎の注文履歴一覧にすること-->
+      <%= link_to "注文履歴", admin_root_path, class: "btn btn-success" %>
+    </div>
+  </div>
+</div>

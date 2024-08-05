@@ -1,2 +1,96 @@
-<h1>Public::Users#edit</h1>
-<p>Find me in app/views/public/users/edit.html.erb</p>
+<div class="container my-3">
+  <% flash.each do |message_type, message| %>
+    <div class="flash-message <%= message_type %>"><%= message %></div>
+  <% end %>
+
+  <h2 class="text-center">登録情報編集</h2>
+    <div class="text-center">
+      <%= render "layouts/errors", obj: @user %>
+    </div>
+  <%= form_with model: @user do |f| %>
+    <div class="field d-flex">
+      <div class="col-3 text-center">
+        <label>氏名</label>
+      </div>
+      <div class="col-6 d-flex text-center">
+        <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", placeholder: "姓", class: "form-control" %>
+        <%= f.text_field :first_name, autocomplete: "first_name", placeholder: "名", class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="field d-flex">
+      <div class="col-3 text-center">
+        <label>フリガナ</label>
+      </div>
+      <div class="col-6 d-flex text-center">
+        <%= f.text_field :last_name_kana, autocomplete: "last_name_kana", placeholder: "セイ", class: "form-control" %>
+        <%= f.text_field :first_name_kana, autocomplete: "first_name_kana", placeholder: "メイ", class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="field d-flex">
+      <div class="col-3 text-center">
+        <label>性別</label>
+      </div>
+      <div class="col-6 d-flex">
+        <div class="radio_button">
+          <%= f.radio_button :gender, User.genders.key(0) %>
+          <%= f.label :gender, User.genders_i18n[:genderless], value: User.genders.key(0) %>
+        </div>
+        <div class="radio_button">
+          <%= f.radio_button :gender, User.genders.key(1) %>
+          <%= f.label :gender, User.genders_i18n[:female], value: User.genders.key(1) %>
+        </div>
+        <div class="radio_button">
+          <%= f.radio_button :gender, User.genders.key(2) %>
+          <%= f.label :gender, User.genders_i18n[:male], value: User.genders.key(2) %>
+        </div>
+      </div>
+    </div>
+
+    <div class="field d-flex">
+      <div class="col-3 text-center">
+        <label>メールアドレス</label>
+      </div>
+      <div class="col-6 d-flex text-center">
+        <%= f.email_field :email, placeholder: "hair.haven@hair", autocomplete: "email", class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="field d-flex">
+      <div class="col-3 text-center">
+        <label>郵便番号</label>
+      </div>
+      <div class="col-3 d-flex text-center">
+        <%= f.text_field :post_code, autocomplete: "post_code", placeholder: "123-4567", class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="field d-flex">
+      <div class="col-3 text-center">
+        <label>住所</label>
+      </div>
+      <div class="col-6 d-flex text-center">
+        <%= f.text_field :address, autocomplete: "address", class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="field d-flex">
+      <div class="col-3 text-center">
+        <label>電話番号</label>
+      </div>
+      <div class="col-6 d-flex text-center">
+        <%= f.text_field :telephone_number, placeholder: "ハイフンなし", autocomplete: "telephone_number", class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="actions text-center">
+      <div class="my-3">
+        <%= f.submit "情報を更新する", class: "btn btn-success col-3", "data-confirm" => "本当に変更しますか？" %>
+      </div>
+      <div>
+        <%= link_to "退会する", unsubscribe_path, class: "btn btn-danger col-3" %>
+      </div>
+    </div>
+  <% end %>
+</div>

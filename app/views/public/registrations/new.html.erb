@@ -1,5 +1,13 @@
 
-<div class="container">
+<div class="container my-3">
+  <!--フラッシュメッセージ(退会ユーザーがログインしようとすると表示)-->
+  <% flash.each do |message_type, message| %>
+    <div class="flash-message <%= message_type %>"><%= message %></div>
+  <% end %>
+
+  <% if @user.errors.any? %>
+    <div class="flash-message alert">新規登録に失敗しました。</div>
+  <% end %>
   <h2 class="text-center">新規登録</h2>
   <%= form_with model: @user, url: user_registration_path do |f| %>
     <%= render "public/shared/error_messages", resource: resource %>
@@ -48,7 +56,7 @@
         <label>郵便番号</label>
       </div>
       <div class="col-3 d-flex text-center">
-        <%= f.text_field :post_code, autocomplete: "post_code", placeholder: "ハイフンなし", class: "form-control" %>
+        <%= f.text_field :post_code, autocomplete: "post_code", placeholder: "123-4567", class: "form-control" %>
       </div>
     </div>
 
