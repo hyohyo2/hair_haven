@@ -10,6 +10,8 @@ class Item < ApplicationRecord
   has_many :item_tags, dependent: :destroy
   has_many :tags, through: :item_tags
 
+  has_one_attached :image
+
   validates :name, presence: true
   validates :kind, presence: true
   # validates :size
