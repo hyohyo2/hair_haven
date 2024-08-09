@@ -10,7 +10,7 @@ class Admin::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     @item.save
-    redirect_to admin_item_path
+    redirect_to admin_item_path(@item.id)
   end
 
 # 商品一覧
@@ -30,11 +30,11 @@ class Admin::ItemsController < ApplicationController
   def update
 
   end
-  
+
   private
-  
+
   def item_params
-    params.require(:item).permit(:name, :kind, :size, :length, :color, :detail, :price, :is_active)
+    params.require(:item).permit(:name, :kind, :size, :length, :color, :detail, :price, :is_active, :image)
   end
-  
+
 end

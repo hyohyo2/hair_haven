@@ -22,7 +22,7 @@
         <label>商品名</label>
       </div>
       <div class="col-6 text-center">
-        <%= f.text_field :name, class: "form-control" %>
+        <%= f.text_field :name,autocomplete: "name", class: "form-control" %>
       </div>
     </div>
     <div class="field d-flex">
@@ -30,7 +30,7 @@
         <label>税抜金額</label>
       </div>
       <div class="col-3 text-center d-flex">
-        <%= f.text_field :price, class: "form-control" %>円
+        <%= f.text_field :price,autocomplete: "price", class: "form-control" %>円
       </div>
     </div>
     <div class="field d-flex">
@@ -38,7 +38,7 @@
         <label>サイズ</label>
       </div>
       <div class="col-6 text-center">
-
+        <%= f.select(:size, Item.sizes_i18n.invert, {}, class: "form-control") %>
       </div>
     </div>
     <div class="field d-flex">
@@ -46,7 +46,7 @@
         <label>長さ</label>
       </div>
       <div class="col-6 text-center">
-
+        <%= f.select(:length, Item.lengths_i18n.invert, {}, class: "form-control") %>
       </div>
     </div>
     <div class="field d-flex">
@@ -54,7 +54,7 @@
         <label>カラー</label>
       </div>
       <div class="col-6 text-center">
-
+        <%= f.text_field :color, autocomplete: "name", class: "form-control"%>
       </div>
     </div>
     <div class="field d-flex">
@@ -78,11 +78,20 @@
       <div class="col-3 text-center">
         <label>販売ステータス</label>
       </div>
-      <div class="col-6 text-center">
-
+      <div class="col-6 d-flex justify-content-center">
+        <div class="radio_button">
+          <%= f.radio_button :is_active, true, id: "is_active_true" %>
+          <%= f.label "販売中", class: "text-success", for: "is_active_true" %>
+        </div>
+        <div class="radio_button">
+          <%= f.radio_button :is_active, false, id: "is_active_false" %>
+          <%= f.label "販売停止中", class: "text-secondary", for: "is_active_false" %>
+        </div>
       </div>
     </div>
-
+    <div class="actions text-center">
+      <%= f.submit "登録する", class: "btn btn-success col-3", "data-confirm" => "この内容でよろしいでしょうか？" %>
+    </div>
   <% end %>
 
 </div>

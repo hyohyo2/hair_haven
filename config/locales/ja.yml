@@ -16,11 +16,13 @@ ja:
         medium: "M"
         large: "L"
         double_large: "LL"
+        not_size: "選択しない"
       length:
         short_hair: "ショート"
         bob_hair: "ボブ"
         medium_hair: "ミディアム"
         long_hair: "ロング"
+        not_length: "選択しない"
     order:
       payment_method:
         credit_card: "クレジットカード"

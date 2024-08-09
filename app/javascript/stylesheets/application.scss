@@ -25,6 +25,12 @@ li{
   vertical-align: middle;
 }
 
+.check_box{
+  position: relative;
+  margin-right: 20px;
+  vertical-align: middle;
+}
+
 // フラッシュメッセージ
 .flash-message{
   border-radius: 5px;
@@ -42,4 +48,10 @@ li{
   background-color: #ffd4d1;
   color: #930403;
   border: solid 1px #930403;
+}
+
+.show-img{
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
 }
