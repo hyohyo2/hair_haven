@@ -12,6 +12,7 @@ class Item < ApplicationRecord
 
   has_one_attached :image
 
+  validates :image, presence: true
   validates :name, presence: true
   validates :kind, presence: true
   # validates :size
@@ -20,10 +21,18 @@ class Item < ApplicationRecord
   #
   validates :detail, presence: true, length: { maximum: 150 }
   validates :price, presence: true
-  validates :is_active, presence: true, inclusion: { in: [true, false] }
-  
+  validates :is_active, inclusion: { in: [true,false] }
+
+  # 消費税率
+  TAX_RATE = 1.1
+
   def get_image(width, height)
     image.variant(resize_to_limit: [width, height]).processed
+  end
+
+  # 税込価格の表示
+  def add_tax_price
+    (self.price* TAX_RATE).floor
   end
 
 end

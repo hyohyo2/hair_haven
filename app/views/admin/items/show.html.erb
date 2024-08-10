@@ -1,25 +1,46 @@
 <div class="container">
-  <h2>商品詳細</h2>
-
-  <div>
-    <%= image_tag @item.get_image(100,100) %>
-  </div>
-  <div>
-    <%= @item.name %>
-  </div>
-  <div>
-    <%= @item.price %>
-  </div>
-  <div>
-    <%= @item.size_i18n %>
-  </div>
-  <div>
-    <%= @item.length_i18n %>
-  </div>
-  <div>
-    <%= @item.color %>
-  </div>
-  <div>
-    <%= @item.detail %>
+  <% flash.each do |message_type, message| %>
+    <div class="flash-message <%= message_type %>"><%= message %></div>
+  <% end %>
+  <div class="text-center">
+    <h2 class="my-3">商品詳細</h2>
+    <div>
+      <%= image_tag @item.get_image(300,300) %>
+    </div>
+    <div class="my-3">
+      <label>商品名：</label>
+      <%= @item.name %>
+    </div>
+    <div class="my-3">
+      <label>税抜価格：</label>
+      <%= @item.price.to_s(:delimited) %>円(<%= @item.add_tax_price.to_s(:delimited) %>円)
+    </div>
+    <div class="my-3">
+      <label>サイズ：</label>
+      <%= @item.size_i18n %>
+    </div>
+    <div class="my-3">
+      <label>長さ：</label>
+      <%= @item.length_i18n %>
+    </div>
+    <div class="my-3">
+      <label>カラー：</label>
+      <%= @item.color %>
+    </div>
+    <div class="my-3">
+      <label>詳細：</label>
+      <%= @item.detail %>
+    </div>
+    <div class="my-3">
+      <label>ステータス：</label>
+      <% if @item.is_active == true %>
+        <span class="text-success">販売中</span>
+      <% else %>
+        <span class="text-secondary">販売停止中</span>
+      <% end %>
+    </div>
+    <div>
+      <%= link_to "編集する", edit_admin_item_path, class: "btn btn-secondary" %>
+    </div>
   </div>
 </div>

@@ -1,5 +1,5 @@
 class Admin::ReviewsController < ApplicationController
-  # before_action :authenticate_admin!
+  before_action :authenticate_admin!
 
   # レビュー一覧
   def index
