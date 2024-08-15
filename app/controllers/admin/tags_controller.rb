@@ -1,5 +1,5 @@
 class Admin::TagsController < ApplicationController
-  # before_action :authenticate_admin!
+  before_action :authenticate_admin!
 
   # タグ登録フォーム/一覧
   def index

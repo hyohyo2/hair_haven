@@ -4,59 +4,59 @@
   <% end %>
   <div class="text-center">
     <div class="my-3">
-      <span class="col-3">
+      <label>
         会員ID：
-      </span>
+      </label>
       <%= @user.id %>
     </div>
     <div class="my-3">
-      <span class="col-3">
+      <label>
         氏名：
-      </span>
+      </label>
       <%= @user.last_name %>
       <%= @user.first_name %>
     </div>
     <div class="my-3">
-      <span class="col-3">
+      <label>
         氏名(カナ)：
-      </span>
+      </label>
       <%= @user.last_name_kana %>
       <%= @user.first_name_kana %>
     </div>
     <div class="my-3">
-      <span class="col-3">
+      <label>
         性別：
-      </span>
+      </label>
       <%= @user.gender_i18n %>
     </div>
     <div class="my-3">
-      <span class="col-3">
+      <label>
         メールアドレス：
-      </span>
+      </label>
       <%= @user.email %>
     </div>
     <div class="my-3">
-      <span class="col-3">
+      <label>
         郵便番号：
-      </span>
+      </label>
       〒<%= @user.post_code %>
     </div>
     <div class="my-3">
-      <span class="col-3">
+      <label>
         住所：
-      </span>
+      </label>
       <%= @user.address %>
     </div>
     <div class="my-3">
-      <span class="col-3">
+      <label>
         電話番号：
-      </span>
+      </label>
       <%= @user.telephone_number %>
     </div>
     <div class="my-3">
-      <span class="col-3">
+      <label>
         ステータス：
-      </span>
+      </label>
       <% if @user.is_active == true %>
         <span class="text-primary">有効</span>
       <% else %>

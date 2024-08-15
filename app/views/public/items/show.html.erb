@@ -1,2 +1,36 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+<div class="container my-3">
+  <% flash.each do |message_type, message| %>
+    <div class="flash-message <%= message_type %>"><%= message %></div>
+  <% end %>
+  <div class="text-center">
+    <h2 class="my-3">商品詳細</h2>
+    <div>
+      <%= image_tag @item.get_image(300,300), class: "show-img" %>
+    </div>
+    <div class="my-3">
+      <label>商品名：</label>
+      <%= @item.name %>
+    </div>
+    <div class="my-3">
+      <label>税抜価格：</label>
+      <%= @item.price.to_s(:delimited) %>円(<%= @item.add_tax_price.to_s(:delimited) %>円)
+    </div>
+    <div class="my-3">
+      <label>サイズ：</label>
+      <%= @item.size_i18n %>
+    </div>
+    <div class="my-3">
+      <label>長さ：</label>
+      <%= @item.length_i18n %>
+    </div>
+    <div class="my-3">
+      <label>カラー：</label>
+      <%= @item.color %>
+    </div>
+    <!--ラベル改行修正-->
+    <div class="my-3">
+      <label>詳細：</label>
+      <%= simple_format(@item.detail, sanitize: true) %>
+    </div>
+  </div>
+</div>

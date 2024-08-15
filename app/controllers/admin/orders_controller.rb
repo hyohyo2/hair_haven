@@ -1,5 +1,5 @@
 class Admin::OrdersController < ApplicationController
-  # before_action :authenticate_admin!
+  before_action :authenticate_admin!
 
   # 注文詳細
   def show

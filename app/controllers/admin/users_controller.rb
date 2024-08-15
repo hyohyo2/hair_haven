@@ -1,5 +1,5 @@
 class Admin::UsersController < ApplicationController
-  # before_action :authenticate_admin!
+  before_action :authenticate_admin!
 
   # 会員一覧
   def index
@@ -23,7 +23,7 @@ class Admin::UsersController < ApplicationController
       flash[:notice] = "会員情報を更新しました。"
       redirect_to admin_user_path
     else
-      flash[:alert] = "会員情報の更新に失敗しました。"
+      flash.now[:alert] = "会員情報の更新に失敗しました。"
       render :edit
     end
   end

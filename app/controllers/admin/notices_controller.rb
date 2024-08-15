@@ -1,5 +1,5 @@
 class Admin::NoticesController < ApplicationController
-  # before_action :authenticate_admin!
+  before_action :authenticate_admin!
 
   # お知らせ登録フォーム
   def new

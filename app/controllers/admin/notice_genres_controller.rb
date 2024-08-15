@@ -1,5 +1,5 @@
 class Admin::NoticeGenresController < ApplicationController
-  # before_action :authenticate_admin!
+  before_action :authenticate_admin!
 
   # 情報ジャンル登録フォーム/一覧
   def index
