@@ -1,2 +1,8 @@
-<h1>Public::Reviews#index</h1>
-<p>Find me in app/views/public/reviews/index.html.erb</p>
+<div class="container my-3">
+  <h3>レビュー一覧</h3>
+  <% @reviews.each do |review| %>
+  <!--表示されていない-->
+    <div><%= review.title %></div>
+    <div><%= review.user.name %></div>
+  <% end %>
+</div>

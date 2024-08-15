@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   enum gender: { genderless: 0, female: 1, male: 2 }
 
+  has_many :reviews, dependent: :destroy
+
   # 郵便番号の正規表現
   POST_CODE = /\A\d{3}[-]\d{4}\z/
 
