@@ -32,5 +32,10 @@
       <label>詳細：</label>
       <%= simple_format(@item.detail, sanitize: true) %>
     </div>
+
+    <div>
+      <%= link_to "レビューを投稿", new_item_review_path(@item.id), class: "btn btn-warning" %>
+      <%= link_to "全レビューを見る", item_reviews_path(@item.id), class: "btn btn-info" %>
+    </div>
   </div>
 </div>
