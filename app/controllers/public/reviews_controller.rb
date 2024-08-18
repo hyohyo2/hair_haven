@@ -18,8 +18,8 @@ class Public::ReviewsController < ApplicationController
 
   # レビュー一覧
   def index
-    item = Item.find(params[:item_id])
-    @review = item.reviews.all
+    @item = Item.find(params[:item_id])
+    @review = @item.reviews.all
   end
 
   # レビュー投稿内容確認

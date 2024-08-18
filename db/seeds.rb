@@ -23,6 +23,19 @@ taro = User.find_or_create_by!(email: "test@test") do |user|
   user.password = "example"
 end
 
+hanako = User.find_or_create_by!(email: "test1@test") do |user|
+  user.last_name = "テスト"
+  user.first_name = "花子"
+  user.last_name_kana = "テスト"
+  user.first_name_kana = "ハナコ"
+  user.gender = "male"
+  user.post_code = "234-5678"
+  user.address = "北海道函館市"
+  user.telephone_number = "0123456789"
+  user.is_active = true
+  user.password = "example"
+end
+
 
 mikan = Item.find_or_create_by!(name: "みかん") do |item|
   item.image = ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/rails.png")),filename: "item1.png")

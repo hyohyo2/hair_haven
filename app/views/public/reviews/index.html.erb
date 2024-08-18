@@ -1,8 +1,22 @@
 <div class="container my-3">
-  <h3>レビュー一覧</h3>
-  <% @review.each do |review| %>
-  <!--表示されていない-->
-    <div><%= review.title %></div>
-    <div><%= review.user.name %></div>
-  <% end %>
+  <div class="row d-flex justify-content-center my-3">
+    <%= link_to item_path(@item.id) do %>
+      <h3><i class="fa-solid fa-circle-chevron-left"></i></h3>
+    <% end %>
+    <h3>レビュー一覧</h3>
+  </div>
+  <div class="text-center">
+    <div><%= image_tag @item.get_image(300,300), class: "index-img" %></div>
+    <h3 class="my-3"><%= @item.name %></h3>
+    <!--<div><%#= @item.size_i18n %>/<%#= @item.color %></div>-->
+    <%= link_to "レビュー投稿する", new_item_review_path(@item.id), class: "btn btn-warning my-3" %>
+    <% @review.each do |review| %>
+      <div class="review-index">
+        <div><%= review.user.last_name %><%= review.user.first_name %></div>
+        <div><%= review.title %></div>
+        <div><%= review.detail %></div>
+        <div><%= l review.created_at, format: :long %></div>
+      </div>
+    <% end %>
+  </div>
 </div>

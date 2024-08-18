@@ -61,3 +61,19 @@ li{
   height: 120px;
   opbject-fit: cover;
 }
+
+.review-index{
+  margin: 15px 30PX;
+  padding: 15px 30px;
+  color: #232323;
+  background-color: #fff8e8;
+  border-left: solid 20px #ffc06e;
+}
+
+// .review-index:nth-child(1){
+//   margin-top: 0;
+// }
+
+.review-index:last-child{
+  margin-bottom: 0;
+}
