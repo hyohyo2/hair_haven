@@ -10,8 +10,12 @@
     <h3 class="my-3"><%= @item.name %></h3>
     <!--<div><%#= @item.size_i18n %>/<%#= @item.color %></div>-->
     <%= link_to "レビュー投稿する", new_item_review_path(@item.id), class: "btn btn-warning my-3" %>
+
+
     <% @review.each do |review| %>
       <div class="review-index">
+        <!--5段階評価-->
+        <%= render "static_rate", review: review %>
         <div><%= review.user.last_name %><%= review.user.first_name %></div>
         <div><%= review.title %></div>
         <div><%= review.detail %></div>
