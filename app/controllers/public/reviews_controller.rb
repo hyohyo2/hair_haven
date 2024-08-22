@@ -12,8 +12,15 @@ class Public::ReviewsController < ApplicationController
     item = Item.find(params[:item_id])
     review = current_user.reviews.new(review_params)
     review.item_id = item.id
-    review.save
-    redirect_to item_reviews_path
+    if review.save
+      flash[:notice] = "レビューを投稿しました。"
+      redirect_to item_reviews_path
+    else
+      flash[:alert] = "レビュー投稿に失敗しました。"
+      @item = Item.find(params[:item_id])
+      @review = Review.new
+      render :new
+    end
   end
 
   # レビュー一覧
@@ -30,7 +37,7 @@ class Public::ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:title, :detail)
+    params.require(:review).permit(:title, :detail, :star)
   end
 
 end

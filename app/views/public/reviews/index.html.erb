@@ -9,9 +9,15 @@
     <div><%= image_tag @item.get_image(300,300), class: "index-img" %></div>
     <h3 class="my-3"><%= @item.name %></h3>
     <!--<div><%#= @item.size_i18n %>/<%#= @item.color %></div>-->
+    <!--評価平均値(小数第１位切り捨て)表示-->
+    <div>
+      評価平均：<%= @item.reviews.average(:star).floor(1) %>(<%= @item.reviews.count(:star) %>件)
+    </div>
     <%= link_to "レビュー投稿する", new_item_review_path(@item.id), class: "btn btn-warning my-3" %>
     <% @review.each do |review| %>
       <div class="review-index">
+        <!--5段階評価-->
+        <%= render "static_rate",  review: review %>
         <div><%= review.user.last_name %><%= review.user.first_name %></div>
         <div><%= review.title %></div>
         <div><%= review.detail %></div>
