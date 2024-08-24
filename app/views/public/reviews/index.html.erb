@@ -18,10 +18,24 @@
       <div class="review-index">
         <!--5段階評価-->
         <%= render "static_rate",  review: review %>
-        <div><%= review.user.last_name %><%= review.user.first_name %></div>
         <div><%= review.title %></div>
+        <div>
+          <label>投稿者名：</label>
+          <%= review.user.last_name %><%= review.user.first_name %>
+        </div>
         <div><%= review.detail %></div>
-        <div><%= l review.created_at, format: :long %></div>
+        <div>
+          <%= l review.created_at, format: :long %>
+          <!--レビュー削除ボタン-->
+          <% if review.user == current_user %>
+            <%= link_to item_review_path(review.item, review), method: :delete, "data-confirm" => "本当に削除してもよろしいですか。" do %>
+              <i class="fa-solid fa-trash"></i>
+            <% end %>
+          <% end %>
+        </div>
+        <div>
+
+        </div>
       </div>
     <% end %>
   </div>
