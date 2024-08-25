@@ -12,8 +12,12 @@
       <%= @item.name %>
     </div>
     <div class="my-3">
-      <label>平均評価：</label>
-      <%= @item.reviews.average(:star).floor(1) %>(<%= @item.reviews.count(:star) %>件)
+      <label>評価：</label>
+      <% if @item.reviews.present? %>
+        <%= @item.reviews.average(:star).floor(1) %>(<%= @item.reviews.count(:star) %>)
+      <% else %>
+        なし(0)
+      <% end %>
     </div>
     <div class="my-3">
       <label>税抜価格：</label>
@@ -39,7 +43,9 @@
 
     <div>
       <%= link_to "レビューを投稿", new_item_review_path(@item.id), class: "btn btn-warning" %>
-      <%= link_to "全レビューを見る", item_reviews_path(@item.id), class: "btn btn-info" %>
+      <% if @item.reviews.present? %>
+        <%= link_to "全レビューを見る", item_reviews_path(@item.id), class: "btn btn-info" %>
+      <% end %>
     </div>
   </div>
 </div>

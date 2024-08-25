@@ -37,7 +37,7 @@ Rails.application.routes.draw do
   scope module: :public do
     resources :items, only:[:index, :show] do
       resource :favorite, only:[:create, :destroy]
-      resources :reviews, only:[:new, :create, :index]
+      resources :reviews, only:[:new, :create, :index, :destroy]
         post '/reviews/confirm' => 'reviews#confirm', as: 'reviews_confirm'
     end
     resources :cart_items, only:[:index, :create, :destroy, :update]
