@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   enum gender: { genderless: 0, female: 1, male: 2 }
 
+  has_many :addresses, dependent: :destroy
   has_many :reviews, dependent: :destroy
 
   # 郵便番号の正規表現
