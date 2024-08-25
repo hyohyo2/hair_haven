@@ -37,14 +37,38 @@ hanako = User.find_or_create_by!(email: "test1@test") do |user|
 end
 
 
-mikan = Item.find_or_create_by!(name: "みかん") do |item|
+black_hair = Item.find_or_create_by!(name: "黒髪") do |item|
   item.image = ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/rails.png")),filename: "item1.png")
-  item.name = "みかん"
+  item.name = "ブラック"
   item.kind = "male_wig"
   item.size = "medium"
   item.length = "bob_hair"
   item.color = "黒"
   item.detail = "黒髪ヘアー"
   item.price = "30000"
+  item.is_active = true
+end
+
+gold_hair = Item.find_or_create_by!(name: "金髪") do |item|
+  item.image = ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/rails.png")),filename: "item1.png")
+  item.name = "ブロンド"
+  item.kind = "female_wig"
+  item.size = "small"
+  item.length = "short_hair"
+  item.color = "金髪"
+  item.detail = "きれいなブロンドヘアーです"
+  item.price = "50000"
+  item.is_active = true
+end
+
+comb = Item.find_or_create_by!(name: "櫛") do |item|
+  item.image = ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/rails.png")),filename: "item1.png")
+  item.name = "櫛"
+  item.kind = "accessory"
+  item.size = "not_size"
+  item.length = "not_length"
+  item.color = "なし"
+  item.detail = "この櫛で髪をとくとサラサラになります。"
+  item.price = "2000"
   item.is_active = true
 end

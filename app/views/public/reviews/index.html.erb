@@ -11,7 +11,9 @@
     <!--<div><%#= @item.size_i18n %>/<%#= @item.color %></div>-->
     <!--評価平均値(小数第１位切り捨て)表示-->
     <div>
-      評価平均：<%= @item.reviews.average(:star).floor(1) %>(<%= @item.reviews.count(:star) %>件)
+      <% if @item.reviews.present? %>
+        <%= @item.reviews.average(:star).floor(1) %>(<%= @item.reviews.count(:star) %>件)
+      <% end %>
     </div>
     <%= link_to "レビュー投稿する", new_item_review_path(@item.id), class: "btn btn-warning my-3" %>
     <% @review.each do |review| %>
