@@ -12,6 +12,14 @@
       <%= @item.name %>
     </div>
     <div class="my-3">
+      <label>評価：</label>
+      <% if @item.reviews.present? %>
+        <%= @item.reviews.average(:star).floor(1) %>(<%= @item.reviews.count(:star) %>)
+      <% else %>
+        ー
+      <% end %>
+    </div>
+    <div class="my-3">
       <label>税抜価格：</label>
       <%= @item.price.to_s(:delimited) %>円(<%= @item.add_tax_price.to_s(:delimited) %>円)
     </div>

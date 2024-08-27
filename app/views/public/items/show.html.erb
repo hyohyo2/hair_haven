@@ -16,7 +16,7 @@
       <% if @item.reviews.present? %>
         <%= @item.reviews.average(:star).floor(1) %>(<%= @item.reviews.count(:star) %>)
       <% else %>
-        なし(0)
+        ー
       <% end %>
     </div>
     <div class="my-3">
