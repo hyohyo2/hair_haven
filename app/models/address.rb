@@ -1,6 +1,7 @@
 class Address < ApplicationRecord
 
   belongs_to :user
+  
   # 郵便番号の正規表現
   POST_CODE = /\A\d{3}[-]\d{4}\z/
 
