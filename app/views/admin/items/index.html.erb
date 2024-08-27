@@ -23,7 +23,13 @@
               <% end %>
             </td>
             <td><%= item.price.to_s(:delimited) %></td>
-            <td><!--レビュー評価平均表示--></td>
+            <td>
+              <% if item.reviews.present? %>
+                <%= item.reviews.average(:star).floor(1) %>(<%= item.reviews.count(:star) %>)
+              <% else %>
+                ー
+              <% end %>
+            </td>
             <td>
               <% if item.is_active == true %>
                 <span class="text-success">販売中</span>
