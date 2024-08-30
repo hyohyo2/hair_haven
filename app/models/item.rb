@@ -35,7 +35,7 @@ class Item < ApplicationRecord
   def add_tax_price
     (self.price* TAX_RATE).floor
   end
-  
+
   # user_idのお気に入りが存在するか
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)

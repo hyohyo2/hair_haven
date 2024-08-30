@@ -7,6 +7,7 @@
             <div><%= image_tag item.get_image(150,100), class: "index-img" %></div>
             <div><%= item.name %></div>
           <% end %>
+          <%= render "public/favorites/btn", item: item %>
           <div class="my-1"><%= item.length_i18n %></div>
           <div class="my-1"><%= item.price.to_s(:delimited) %>円(税抜)</div>
         </div>
