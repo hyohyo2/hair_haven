@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
   has_many :addresses, dependent: :destroy
   has_many :reviews, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   # 郵便番号の正規表現
   POST_CODE = /\A\d{3}[-]\d{4}\z/

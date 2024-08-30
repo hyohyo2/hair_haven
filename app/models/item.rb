@@ -9,6 +9,7 @@ class Item < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :item_tags, dependent: :destroy
   has_many :tags, through: :item_tags
+  has_many :favorites, dependent: :destroy
 
   has_one_attached :image
 
@@ -33,6 +34,11 @@ class Item < ApplicationRecord
   # 税込価格の表示
   def add_tax_price
     (self.price* TAX_RATE).floor
+  end
+
+  # user_idのお気に入りが存在するか
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
   end
 
 end

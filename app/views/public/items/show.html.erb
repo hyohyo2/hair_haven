@@ -10,6 +10,7 @@
     <div class="my-3">
       <label>商品名：</label>
       <%= @item.name %>
+      <%= render "public/favorites/btn", item: @item %>
     </div>
     <div class="my-3">
       <label>評価：</label>
