@@ -1,11 +1,13 @@
 <% if user_signed_in?%>
   <% if item.favorited_by?(current_user) %>
-    <%= link_to item_favorite_path(item), method: :delete do %>
+    <%= link_to item_favorite_path(item), method: :delete, remote: true do %>
       <i class="fa-solid fa-heart" style="color: #ea759e;"></i>
     <% end %>
+    (<%= item.favorites.count %>)
   <% else %>
-    <%= link_to item_favorite_path(item), method: :post do %>
+    <%= link_to item_favorite_path(item), method: :post, remote: true do %>
       <i class="fa-regular fa-heart" style="color: #ea759e;"></i>
     <% end %>
+    (<%= item.favorites.count %>)
   <% end %>
 <% end %>
