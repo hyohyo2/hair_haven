@@ -36,6 +36,8 @@ class Public::UsersController < ApplicationController
 
   # いいねした商品一覧
   def favorites
+    favorites = Favorite.where(user_id: current_user.id).pluck(:item_id)
+    @favorite_items = Item.where(id: favorites)
   end
 
   private

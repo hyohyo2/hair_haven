@@ -1,2 +1,9 @@
-<h1>Public::Users#favorites</h1>
-<p>Find me in app/views/public/users/favorites.html.erb</p>
+<div class="container my-3">
+  <div class="row text-center">
+    <% if @favorite_items.present? %>
+      <%= render "public/items/index", items: @favorite_items %>
+    <% else %>
+      <h3 class="col text-center">いいねした商品がありません。</h3>
+    <% end %>
+  </div>
+</div>
