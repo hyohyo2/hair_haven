@@ -1,75 +1,73 @@
-<div class="container my-3">
-  <% flash.each do |message_type, message| %>
-    <div class="flash-message <%= message_type %>"><%= message %></div>
-  <% end %>
-  <% if @item.is_active == true %>
-    <div class="text-center">
-      <h2 class="my-3">商品詳細</h2>
-      <div>
-        <%= image_tag @item.get_image(300,300), class: "show-img" %>
-      </div>
-      <div class="my-3">
-        <label>商品名：</label>
-        <%= @item.name %>
-        <span id="favorite_buttons_<%= @item.id %>">
-          <%= render "public/favorites/btn", item: @item %>
-        </span>
-      </div>
-      <div class="my-3">
-        <label>評価：</label>
-        <% if @item.reviews.present? %>
-          <%= @item.reviews.average(:star).floor(1) %>(<%= @item.reviews.count(:star) %>)
-        <% else %>
-          ー
-        <% end %>
-      </div>
-      <div class="my-3">
-        <label>税抜価格：</label>
-        <%= @item.price.to_s(:delimited) %>円(<%= @item.add_tax_price.to_s(:delimited) %>円)
-      </div>
-      <div class="my-3">
-        <label>サイズ：</label>
-        <%= @item.size_i18n %>
-      </div>
-      <div class="my-3">
-        <label>長さ：</label>
-        <%= @item.length_i18n %>
-      </div>
-      <div class="my-3">
-        <label>カラー：</label>
-        <%= @item.color %>
-      </div>
-      <!--ラベル改行修正-->
-      <div class="my-3">
-        <label>詳細：</label>
-        <%= simple_format(@item.detail, sanitize: true) %>
-      </div>
-
-
-      <div>
-        <% if user_signed_in? %>
-          <%= form_with model: @cart_item, local: true do |f| %>
-            <%= f.hidden_field :item_id, value: @item.id %>
-            <div>
-              <%= f.label :amount , "個数選択" %>
-              <%= f.select :amount, *[1..10] %>
-            </div>
-            <div class="my-3">
-              <%= f.submit "カートに入れる", class: "btn btn-success" %>
-            </div>
-
-          <% end %>
-          <div class="my-3">
-            <%= link_to "レビューを投稿", new_item_review_path(@item.id), class: "btn btn-warning" %>
-          </div>
-        <% end %>
-        <% if @item.reviews.present? %>
-          <div class="my-3">
-            <%= link_to "全レビューを見る", item_reviews_path(@item.id), class: "btn btn-info" %>
-          </div>
-        <% end %>
-
-      </div>
+<% flash.each do |message_type, message| %>
+  <div class="flash-message <%= message_type %>"><%= message %></div>
+<% end %>
+<% if @item.is_active == true %>
+  <div class="text-center">
+    <h2 class="my-3">商品詳細</h2>
+    <div>
+      <%= image_tag @item.get_image(300,300), class: "show-img" %>
     </div>
-  <% end %>
-</div>
+    <div class="my-3">
+      <label>商品名：</label>
+      <%= @item.name %>
+      <span id="favorite_buttons_<%= @item.id %>">
+        <%= render "public/favorites/btn", item: @item %>
+      </span>
+    </div>
+    <div class="my-3">
+      <label>評価：</label>
+      <% if @item.reviews.present? %>
+        <%= @item.reviews.average(:star).floor(1) %>(<%= @item.reviews.count(:star) %>)
+      <% else %>
+        ー
+      <% end %>
+    </div>
+    <div class="my-3">
+      <label>税抜価格：</label>
+      <%= @item.price.to_s(:delimited) %>円(<%= @item.add_tax_price.to_s(:delimited) %>円)
+    </div>
+    <div class="my-3">
+      <label>サイズ：</label>
+      <%= @item.size_i18n %>
+    </div>
+    <div class="my-3">
+      <label>長さ：</label>
+      <%= @item.length_i18n %>
+    </div>
+    <div class="my-3">
+      <label>カラー：</label>
+      <%= @item.color %>
+    </div>
+    <!--ラベル改行修正-->
+    <div class="my-3">
+      <label>詳細：</label>
+      <%= simple_format(@item.detail, sanitize: true) %>
+    </div>
+
+
+    <div>
+      <% if user_signed_in? %>
+        <%= form_with model: @cart_item, local: true do |f| %>
+          <%= f.hidden_field :item_id, value: @item.id %>
+          <div>
+            <%= f.label :amount , "個数選択" %>
+            <%= f.select :amount, *[1..10] %>
+          </div>
+          <div class="my-3">
+            <%= f.submit "カートに入れる", class: "btn btn-success" %>
+          </div>
+
+        <% end %>
+        <div class="my-3">
+          <%= link_to "レビューを投稿", new_item_review_path(@item.id), class: "btn btn-warning" %>
+        </div>
+      <% end %>
+      <% if @item.reviews.present? %>
+        <div class="my-3">
+          <%= link_to "全レビューを見る", item_reviews_path(@item.id), class: "btn btn-info" %>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+<% end %>
