@@ -16,7 +16,7 @@ class Public::ReviewsController < ApplicationController
       flash[:notice] = "レビューを投稿しました。"
       redirect_to item_reviews_path
     else
-      flash[:alert] = "レビュー投稿に失敗しました。"
+      flash.now[:alert] = "レビュー投稿に失敗しました。"
       @item = Item.find(params[:item_id])
       @review = Review.new
       render :new
