@@ -32,17 +32,39 @@ class Public::CartItemsController < ApplicationController
 
   # カート内商品データ更新処理
   def update
-
+    cart_item = CartItem.find(params[:id])
+    if cart_item.update(cart_items_params)
+      redirect_to cart_items_path
+    else
+      @cart_items = current_user.cart_items.all
+      render :index
+    end
   end
 
   # カート内商品データ削除処理(一部商品)
   def destroy
-
+    cart_item = CartItem.find(params[:id])
+    if cart_item.destroy
+      flash[:notice] = "商品を削除しました。"
+      @cart_items = current_user.cart_items.all
+      redirect_to cart_items_path
+    else
+      flash.now[:alert] = "商品の削除に失敗しました。"
+      @cart_items = current_user.cart_items.all
+      render :index
+    end
   end
 
   # カート内商品データ削除処理(全商品)
   def destroy_all
-
+    if current_user.cart_items.destroy_all
+      flash[:notice] = "カート内商品をすべて削除しました。"
+      redirect_to items_path
+    else
+      flash.now[:alert] = "カート内商品の削除に失敗しました。"
+      @cart_items = current_user.cart_items.all
+      render :index
+    end
   end
 
   private

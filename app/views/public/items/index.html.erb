@@ -1,3 +1,6 @@
+<% flash.each do |message_type, message| %>
+  <div class="flash-message <%= message_type %> "><%= message %></div>
+<% end %>
 <div class="row text-center">
   <%= render "public/items/index", items: @items %>
 </div>
