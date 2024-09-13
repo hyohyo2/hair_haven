@@ -20,9 +20,11 @@ class Public::CartItemsController < ApplicationController
       cart_item.save
       flash[:notice] = "商品をかごに入れました。"
       redirect_to cart_items_path
-    # もしデータを保存できたら
+    # もしカート内に同じ商品がない場合は通常保存
     elsif @cart_item.save
       @cart_items = current_user.cart_items.all
+      flash[:notice] = "商品をかごに入れました。"
+      render :index
     else #もし保存できなかったら
       flash.now[:alert] = "商品をかごに入れるのを失敗しました。"
       render :index
@@ -34,9 +36,11 @@ class Public::CartItemsController < ApplicationController
   def update
     cart_item = CartItem.find(params[:id])
     if cart_item.update(cart_items_params)
+      flash[:notice] = "数量を変更しました。"
       redirect_to cart_items_path
     else
       @cart_items = current_user.cart_items.all
+      flash.now[:alert] = "数量の変更に失敗しました。"
       render :index
     end
   end

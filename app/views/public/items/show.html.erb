@@ -48,7 +48,6 @@
     <div>
       <% if user_signed_in? %>
         <%= form_with model: @cart_item, local: true do |f| %>
-          <%= f.hidden_field :item_id, value: @item.id %>
           <div>
             <%= f.label :amount , "個数選択" %>
             <%= f.select :amount, *[1..10] %>
@@ -57,7 +56,6 @@
             <%= f.hidden_field :item_id, :value => @item.id %>
             <%= f.submit "カートに入れる", class: "btn btn-success" %>
           </div>
-
         <% end %>
         <div class="my-3">
           <%= link_to "レビューを投稿", new_item_review_path(@item.id), class: "btn btn-warning" %>
@@ -68,7 +66,6 @@
           <%= link_to "全レビューを見る", item_reviews_path(@item.id), class: "btn btn-info" %>
         </div>
       <% end %>
-
     </div>
   </div>
 <% end %>
