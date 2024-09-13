@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :cart_items, dependent: :destroy
+  has_many :order, dependent: :destroy
 
   # 郵便番号の正規表現
   POST_CODE = /\A\d{3}[-]\d{4}\z/
@@ -24,7 +25,9 @@ class User < ApplicationRecord
   validates :telephone_number, presence: true, length: { in: 10..11 }
   validates :is_active, inclusion: { in: [true,false] }
 
-
+  def full_name
+    last_name + first_name
+  end
 
 
 end
