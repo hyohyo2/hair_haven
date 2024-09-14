@@ -1,6 +1,6 @@
 <h3>注文情報入力</h3>
 
-<%= form_with model: @order, local: true do |f| %>
+<%= form_with model: @order, url: orders_confirm_path, method: :post, local: true do |f| %>
   <div>
     <h4>支払方法入力</h4>
     <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
@@ -35,5 +35,8 @@
   <div>
     <%= f.label :name, "宛名" %>
     <%= f.text_field :name, placeholder: "田中太郎" %>
+  </div>
+  <div>
+    <%= f.submit "確認画面へ進む", class: "btn btn-success" %>
   </div>
 <% end %>

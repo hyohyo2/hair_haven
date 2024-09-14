@@ -6,10 +6,11 @@ class Order < ApplicationRecord
 
   belongs_to :user
   has_many :order_details, dependent: :destroy
-  
+
   # 郵便番号の正規表現
   POST_CODE = /\A\d{3}[-]\d{4}\z/
-  
+  SHIPPING_COST = 880
+
   validates :user_id, presence: true
   validates :post_code, presence: true, format: { with: POST_CODE }
   validates :address, presence: true
@@ -17,4 +18,11 @@ class Order < ApplicationRecord
   validates :shipping_cost, presence: true
   validates :total_payment, presence: true
   validates :payment_method, presence: true
+
+
+
+  def get_shipping_cost
+    SHIPPING_COST
+  end
+
 end
