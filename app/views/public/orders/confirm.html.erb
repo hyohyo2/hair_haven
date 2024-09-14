@@ -1,0 +1,52 @@
+<h3>
+  <%= link_to new_order_path do %>
+    <i class="fa-solid fa-circle-chevron-left"></i>
+  <% end %>
+  注文情報確認
+</h3>
+<table class="table border-bottom text-center">
+  <% total = 0 %>
+  <% @cart_items.each do |cart_item| %>
+    <tr>
+      <td>
+        <div><%= image_tag cart_item.item.get_image(150,120), class: "index-img" %></div>
+        <div><%= cart_item.item.name %></div>
+      </td>
+      <td>
+        <%= cart_item.item.price.to_s(:delimited) %>円
+      </td>
+      <td>
+        <%= cart_item.amount %>
+      </td>
+      <td>
+        <%= cart_item.subtotal.to_s(:delimited) %>円
+      </td>
+    </tr>
+    <!--商品ごとの小計をすべて合計するものを"total"に代入-->
+    <% total += cart_item.subtotal %>
+  <% end %>
+</table>
+
+<div class="text-center">
+  <label>合計金額</label>
+  <%= total.to_s(:delimited) %>円
+</div>
+<div class="text-center">
+  <label>配送料</label>
+  <%= @order.shipping_cost %>円
+</div>
+<div class="text-center">
+  <label>請求額</label>
+  <% order_total_payment = total + @order.shipping_cost %>
+  <%= order_total_payment.to_s(:delimited) %>円
+</div>
+<!--リーダブルコード修正必要-->
+<div class="text-center">
+  <label>内消費税</label>
+  <% get_only_tax_cost = order_total_payment/11 %>
+  <%= get_only_tax_cost.to_s(:delimited) %>円
+</div>
+
+<h4>支払方法</h4>
+
+<%= @order.payment_method_i18n %>
