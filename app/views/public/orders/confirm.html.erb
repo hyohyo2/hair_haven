@@ -47,6 +47,18 @@
   <%= get_only_tax_cost.to_s(:delimited) %>円
 </div>
 
-<h4>支払方法</h4>
+<div class="text-center">
+  <label>支払方法</label>
+  <%= @order.payment_method_i18n %>
+</div>
 
-<%= @order.payment_method_i18n %>
+<div class="text-center">
+  <label>お届け先</label>
+  <div>〒<%= @order.post_code %></div>
+  <div><%= @order.address %></div>
+  <div><%= @order.name %></div>
+</div>
+<div class="text-center">
+  <%= link_to "注文を確定する", orders_path, class: "btn btn-success" %>
+</div>
+
