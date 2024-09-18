@@ -32,8 +32,20 @@ class Public::OrdersController < ApplicationController
 
   # 注文確定処理
   def create
-    
-
+    @order = Order.new(order_params)
+    @order.user_id = current_user.id
+    @order.save
+    # 注文履歴(order_detail)へ保存
+    current_user.cart_items.each do |cart_item|
+      @order_detail = OrderDetail.new
+      @order_detail.order_id = @order.id
+      @order_detail.item_id = cart_item.item_id
+      @order_detail.price = cart_item.item.add_tax_price
+      @order_detail.amount = cart_item.amount
+      @order_detail.save
+    end
+    current_user.cart_items.destroy_all
+    redirect_to thanks_path
   end
 
   # 注文完了画面
