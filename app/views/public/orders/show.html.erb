@@ -5,7 +5,57 @@
   注文履歴詳細
 </h3>
 
+<h4><strong>注文情報</strong></h4>
+<table class="table text-center border-bottom">
+  <tr>
+    <th>注文日</th>
+    <td><%= @order.created_at.strftime"%Y/%m/%d %H:%M" %></td>
+  </tr>
+  <tr>
+    <th>配送先</th>
+    <td>〒<%= @order.post_code %><br><%= @order.address %></td>
+  </tr>
+  <tr>
+    <th>支払方法</th>
+    <td><%= @order.payment_method_i18n %></td>
+  </tr>
+  <th>注文状況</th>
+  <td><%= @order.order_status_i18n %></td>
+</table>
 
-<div>
+<h4><strong>商品情報</strong></h4>
+<table class="table text-center border-bottom">
+  <% total = 0 %>
+  <% @order.order_details.each do |order_detail| %>
+  <tr>
+    <td><%= image_tag order_detail.item.get_image(150,200), class: "index-img" %></td>
+    <td><%= order_detail.item.name %></td>
+    <td><%= order_detail.price.to_s(:delimited) %>円</td>
+    <td><%= order_detail.amount %></td>
+    <td><%= order_detail.subtotal.to_s(:delimited) %>円</td>
+    <td><% total += order_detail.subtotal %></td>
+  </tr>
+  <% end %>
+</table>
 
+
+  <div class="text-center">
+    <label>合計金額</label>
+    <%= total.to_s(:delimited) %>円
+  </div>
+  <div class="text-center">
+    <label>配送料</label>
+    <%= @order.shipping_cost %>円
+  </div>
+  <div class="text-center">
+    <label>請求額</label>
+    <% @order.total_payment = total + @order.shipping_cost %>
+    <%= @order.total_payment.to_s(:delimited) %>円
+  </div>
+  <!--リーダブルコード修正必要-->
+  <div class="text-center">
+    <label>内消費税</label>
+    <% get_only_tax_cost = @order.total_payment/11 %>
+    （<%= get_only_tax_cost.to_s(:delimited) %>円）
+  </div>
 </div>
