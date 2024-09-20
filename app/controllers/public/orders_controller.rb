@@ -64,6 +64,7 @@ class Public::OrdersController < ApplicationController
   # 注文履歴詳細
   def show
     @order = Order.find(params[:id])
+    @item = Item.find(params[:id])
   end
 
   private
