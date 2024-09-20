@@ -1,23 +1,27 @@
 class Public::OrdersController < ApplicationController
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
 
   # 注文情報入力
   def new
     @order = Order.new
+
   end
 
   # 注文情報確認
   def confirm
     @order = Order.new(order_params)
+
     if params[:order][:select_address] == "0"
       @order.post_code = current_user.post_code
       @order.address = current_user.address
       @order.name = current_user.full_name
+
     elsif params[:order][:select_address] == "1"
-      select = Address.find(params[:order][:address_id])
-      @order.post_code = select.post_code
-      @order.address = select.address
-      @order.name = select.name
+      selected = Address.find(params[:order][:address_id])
+      @order.post_code = selected.post_code
+      @order.address = selected.address
+      @order.name = selected.name
+
     elsif params[:order][:select_address] == "2"
       @order.post_code = params[:order][:post_code]
       @order.address = params[:order][:address]
@@ -54,16 +58,19 @@ class Public::OrdersController < ApplicationController
 
   # 注文履歴
   def index
+    @orders = Order.where(user_id: current_user.id)
   end
 
   # 注文履歴詳細
   def show
+    @order = Order.find(params[:id])
+    @item = Item.find(params[:id])
   end
 
   private
 
   def order_params
-    params.require(:order).permit(:user_id, :post_code, :address, :name, :shipping_cost, :total_payment, :payment_method)
+    params.require(:order).permit(:user_id, :post_code, :address, :name, :shipping_cost, :total_payment, :payment_method, :order_status)
   end
 
 

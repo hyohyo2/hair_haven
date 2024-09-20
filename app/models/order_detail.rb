@@ -5,4 +5,8 @@ class OrderDetail < ApplicationRecord
   belongs_to :item
   belongs_to :order
 
+  def subtotal
+    amount * item.add_tax_price
+  end
+
 end

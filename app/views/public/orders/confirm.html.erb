@@ -37,13 +37,13 @@
 </div>
 <div class="text-center">
   <label>請求額</label>
-  <% order_total_payment = total + @order.shipping_cost %>
-  <%= order_total_payment.to_s(:delimited) %>円
+  <% @order.total_payment = total + @order.shipping_cost %>
+  <%= @order.total_payment.to_s(:delimited) %>円
 </div>
 <!--リーダブルコード修正必要-->
 <div class="text-center">
   <label>内消費税</label>
-  <% get_only_tax_cost = order_total_payment/11 %>
+  <% get_only_tax_cost = @order.total_payment/11 %>
   <%= get_only_tax_cost.to_s(:delimited) %>円
 </div>
 
