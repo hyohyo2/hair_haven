@@ -1,46 +1,44 @@
-<div class="container my-3">
-  <div class="row d-flex justify-content-center my-3">
-    <h3>
-      <%= link_to item_path(@item.id) do %>
-        <i class="fa-solid fa-circle-chevron-left"></i>
-      <% end %>
-      レビュー一覧
-    </h3>
-  </div>
-  <div class="text-center">
-    <div><%= image_tag @item.get_image(300,300), class: "index-img" %></div>
-    <h3 class="my-3"><%= @item.name %></h3>
-    <!--<div><%#= @item.size_i18n %>/<%#= @item.color %></div>-->
-    <!--評価平均値(小数第１位切り捨て)表示-->
-    <div>
-      <% if @item.reviews.present? %>
-        <%= @item.reviews.average(:star).floor(1) %>(<%= @item.reviews.count(:star) %>件)
-      <% end %>
-    </div>
-    <%= link_to "レビュー投稿する", new_item_review_path(@item.id), class: "btn btn-warning my-3" %>
-    <% @review.each do |review| %>
-      <div class="review-index">
-        <!--5段階評価-->
-        <%= render "static_rate",  review: review %>
-        <div><%= review.title %></div>
-        <div>
-          <label>投稿者名：</label>
-          <%= review.user.full_name %>
-        </div>
-        <div><%= review.detail %></div>
-        <div>
-          <%= l review.created_at, format: :long %>
-          <!--レビュー削除ボタン-->
-          <% if review.user == current_user %>
-            <%= link_to item_review_path(review.item, review), method: :delete, "data-confirm" => "本当に削除してもよろしいですか。" do %>
-              <i class="fa-solid fa-trash"></i>
-            <% end %>
-          <% end %>
-        </div>
-        <div>
-
-        </div>
-      </div>
+<div class="row d-flex justify-content-center my-3">
+  <h3>
+    <%= link_to item_path(@item.id) do %>
+      <i class="fa-solid fa-circle-chevron-left"></i>
+    <% end %>
+    レビュー一覧
+  </h3>
+</div>
+<div class="text-center">
+  <div><%= image_tag @item.get_image(300,300), class: "index-img" %></div>
+  <h3 class="my-3"><%= @item.name %></h3>
+  <!--<div><%#= @item.size_i18n %>/<%#= @item.color %></div>-->
+  <!--評価平均値(小数第１位切り捨て)表示-->
+  <div>
+    <% if @item.reviews.present? %>
+      <%= @item.reviews.average(:star).floor(1) %>(<%= @item.reviews.count(:star) %>件)
     <% end %>
   </div>
+  <%= link_to "レビュー投稿する", new_item_review_path(@item.id), class: "btn btn-warning my-3" %>
+  <% @review.each do |review| %>
+    <div class="review-index">
+      <!--5段階評価-->
+      <%= render "static_rate",  review: review %>
+      <div><%= review.title %></div>
+      <div>
+        <label>投稿者名：</label>
+        <%= review.user.full_name %>
+      </div>
+      <div><%= review.detail %></div>
+      <div>
+        <%= l review.created_at, format: :long %>
+        <!--レビュー削除ボタン-->
+        <% if review.user == current_user %>
+          <%= link_to item_review_path(review.item, review), method: :delete, "data-confirm" => "本当に削除してもよろしいですか。" do %>
+            <i class="fa-solid fa-trash"></i>
+          <% end %>
+        <% end %>
+      </div>
+      <div>
+
+      </div>
+    </div>
+  <% end %>
 </div>
