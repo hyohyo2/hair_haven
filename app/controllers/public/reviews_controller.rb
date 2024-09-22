@@ -36,8 +36,9 @@ class Public::ReviewsController < ApplicationController
 
   # レビューの削除
   def destroy
-    Review.find(params[:id]).destroy
-    redirect_to item_reviews_path(params[:item_id])
+    review = Review.find(params[:id])
+    review.destroy
+    redirect_to item_reviews_path
   end
 
   private
