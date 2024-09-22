@@ -14,7 +14,9 @@
     <div class="my-3">
       <label>評価：</label>
       <% if @item.reviews.present? %>
-        <%= @item.reviews.average(:star).floor(1) %>(<%= @item.reviews.count(:star) %>)
+        <%= link_to admin_item_reviews_path(@item) do %>
+          <%= @item.reviews.average(:star).floor(1) %>(<%= @item.reviews.count(:star) %>)
+        <% end %>
       <% else %>
         ー
       <% end %>

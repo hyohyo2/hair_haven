@@ -1,2 +1,49 @@
-<h1>Admin::Reviews#index</h1>
-<p>Find me in app/views/admin/reviews/index.html.erb</p>
+<div class="text-center">
+  <div>
+    <h3>
+      <%= link_to admin_item_path(@item.id) do %>
+        <i class="fa-solid fa-circle-chevron-left"></i>
+      <% end %>
+      レビュー一覧
+    </h3>
+  </div>
+  <div>
+    <div><%= image_tag @item.get_image(300,300), class: "index-img" %></div>
+    <label>商品名：</label>
+    <%= @item.name %>
+  </div>
+  <div>
+    <label>5段階評価平均：</label>
+    <% if @item.reviews.present? %>
+      <%= @item.reviews.average(:star).floor(1) %>(<%= @item.reviews.count(:star) %>件)
+    <% end %>
+  </div>
+
+  <% @reviews.each do |review| %>
+    <div class="review-index">
+      <div>
+        <%= render "public/reviews/static_rate", review: review %>
+      </div>
+      <div>
+        <%= review.title %>
+      </div>
+      <div>
+        <%= review.user.full_name %>/<%= review.user.gender_i18n %>
+      </div>
+      <div>
+        <label>サイズ</label>
+        <%= review.item.size_i18n %>
+      </div>
+      <div>
+        <%= review.detail %>
+      </div>
+      <div>
+        <%= review.created_at.strftime('%Y/%m/%d %H:%M') %>
+        <%= link_to admin_item_review_path(review.item, review), method: :delete, "data-confirm" => "本当に削除しますか？" do %>
+          <i class="fa-solid fa-trash"></i>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+</div>
