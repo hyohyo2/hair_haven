@@ -1,2 +1,36 @@
-<h1>Admin::Notices#new</h1>
-<p>Find me in app/views/admin/notices/new.html.erb</p>
+<% flash.each do |message_type, message| %>
+  <div class="flash-message <%= message_type %> "><%= message %></div>
+<% end %>
+<div class="text-center">
+  <h3>お知らせ登録</h3>
+  <%= render "layouts/errors", obj: @notice %>
+</div>
+<%= form_with model: [:admin, @notice] do |f| %>
+  <div class="row text-center my-3">
+    <div class="col">
+      <%= f.label "ジャンル" %>
+    </div>
+    <div class="col form-group">
+      <%= f.collection_select :notice_genre_id, NoticeGenre.all, :id, :name %>
+    </div>
+  </div>
+  <div class="row text-center my-3">
+    <div class="col">
+      <%= f.label "タイトル" %>
+    </div>
+    <div class="col form-group">
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+  </div>
+  <div class="row text-center my-3">
+    <div class="col">
+      <%= f.label "詳細" %>
+    </div>
+    <div class="col">
+      <%= f.text_area :detail, rows: 5, class: "form-control" %>
+    </div>
+  </div>
+  <div class="text-center">
+    <%= f.submit "新規登録", class: "btn btn-success" %>
+  </div>
+<% end %>

@@ -1,2 +1,35 @@
-<h1>Admin::Notices#index</h1>
-<p>Find me in app/views/admin/notices/index.html.erb</p>
+<% flash.each do |message_type, message| %>
+  <div class="flash-message <%= message_type %> "><%= message %></div>
+<% end %>
+<div class="text-center mb-3">
+  <h3>お知らせ一覧</h3>
+  <%= link_to new_admin_notice_path, class: "btn btn-outline-success" do %>
+    お知らせ登録
+    <i class="fa-solid fa-circle-plus"></i>
+  <% end %>
+  <%= link_to admin_notice_genres_path, class: "btn btn-outline-info" do %>
+    お知らせジャンル
+    <i class="fa-solid fa-tags"></i>
+  <% end %>
+</div>
+<table class="table table-hover border-bottom text-center">
+  <thead>
+    <th>日時</th>
+    <th>タイトル</th>
+    <th>ジャンル</th>
+  </thead>
+  <tbody>
+    <% @notices.each do |notice| %>
+      <tr>
+        <td><%= notice.created_at.strftime("%Y/%m/%d") %></td>
+        <td>
+          <%= link_to admin_notice_path(notice) do %>
+            <%= notice.title %>
+          <% end %>
+        </td>
+        <td><%= notice.notice_genre.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

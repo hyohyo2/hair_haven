@@ -1,2 +1,30 @@
-<h1>Admin::Notices#show</h1>
-<p>Find me in app/views/admin/notices/show.html.erb</p>
+<% flash.each do |message_type, message| %>
+  <div class="flash-message <%= message_type %> "><%= message %></div>
+<% end %>
+<div class="text-center mb-3">
+  <h3>
+    <%= link_to admin_notices_path do %>
+      <i class="fa-solid fa-circle-chevron-left"></i>
+    <% end %>
+    お知らせ詳細
+  </h3>
+  <%= link_to edit_admin_notice_path(@notice), class: "btn btn-outline-secondary" do %>
+    編集
+    <i class="fa-solid fa-wrench"></i>
+  <% end %>
+  <%= link_to admin_notice_path(@notice), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-danger" do %>
+    <i class="fa-solid fa-trash-can"></i>
+  <% end %>
+</div>
+
+<div class="notice-detail text-center">
+  <h4><%= @notice.title %></h4>
+  <%= @notice.created_at.strftime('%Y/%m/%d %H:%M') %>
+  <div class="my-3">
+    <label>ジャンル</label>
+    <%= @notice.notice_genre.name %>
+  </div>
+  <div class="my-3">
+    <%= simple_format(@notice.detail, sanitize: true) %>
+  </div>
+</div>
