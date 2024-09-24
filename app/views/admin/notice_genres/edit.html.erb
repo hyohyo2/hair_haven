@@ -1,2 +1,19 @@
-<h1>Admin::NoticeGenres#edit</h1>
-<p>Find me in app/views/admin/notice_genres/edit.html.erb</p>
+<% flash.each do |message_type, message| %>
+  <div class="flash-message <%= message_type %> "><%= message %></div>
+<% end %>
+<div class="text-center">
+  <h3>お知らせジャンル編集</h3>
+  <%= render "layouts/errors", obj: @notice_genre %>
+</div>
+
+<%= form_with model: [:admin, @notice_genre] do |f| %>
+  <div class="row my-3">
+    <div class="col"></div>
+    <div class="col">
+      <%= f.text_field :name , class: "form-control" %>
+    </div>
+    <div class="col">
+      <%= f.submit "変更を保存", class: "btn btn-success" %>
+    </div>
+  </div>
+<% end %>

@@ -49,14 +49,13 @@ Rails.application.routes.draw do
 # 管理者用
   namespace :admin do
     root to: 'homes#top'
-
     resources :items, only:[:new, :create, :index, :show, :edit, :update] do
       resources :reviews, only:[:index, :destroy]
     end
     resources :users, only:[:index, :show, :edit, :update]
     resources :tags, only:[:index, :create, :edit, :update]
     resources :notices, only:[:new, :create, :index, :show, :edit, :update, :destroy]
-    resources :notice_genres, only:[:index, :create, :edit, :update]
+    resources :notice_genres, only:[:index, :create, :edit, :update, :destroy]
     resources :orders, only:[:show, :update]
     resources :order_details, only:[:update]
   end
