@@ -1,2 +1,34 @@
-<h1>Admin::Tags#index</h1>
-<p>Find me in app/views/admin/tags/index.html.erb</p>
+<% flash.each do |message_type, message| %>
+  <div class="flash-message <%= message_type %> "><%= message %></div>
+<% end %>
+<div class="text-center">
+  <h3>タグ登録/一覧</h3>
+   <%= render "layouts/errors", obj: @tag %>
+</div>
+<%= form_with model: [:admin, @tag] do |f| %>
+  <div class="row my-3">
+    <div class="col"></div>
+    <div class="col">
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+    <div class="col">
+      <%= f.submit "登録する", class: "btn btn-success" %>
+    </div>
+  </div>
+<% end %>
+<table class="table border-bottom text-center my-5">
+  <thead>
+    <th>タグ名</th>
+    <th></th>
+  </thead>
+  <tbody>
+    <% @tags.each do |tag| %>
+    <tr>
+      <td><%= tag.name() %></td>
+      <td>
+        <%= link_to "編集する", edit_admin_tag_path(tag), class: "btn btn-sm btn-secondary" %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

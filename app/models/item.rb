@@ -7,8 +7,10 @@ class Item < ApplicationRecord
   has_many :cart_items, dependent: :destroy
   has_many :order_details, dependent: :destroy
   has_many :reviews, dependent: :destroy
+  # 中間テーブルitem_tagへの関連付け
   has_many :item_tags, dependent: :destroy
-  has_many :tags, through: :item_tags
+  # 中間テーブルitem_tagを介してtagへの関連付け
+  has_many :tags, through: :item_tags, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
   has_one_attached :image
