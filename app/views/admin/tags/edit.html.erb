@@ -1,2 +1,19 @@
-<h1>Admin::Tags#edit</h1>
-<p>Find me in app/views/admin/tags/edit.html.erb</p>
+<% flash.each do |message_type, message| %>
+  <div class="flash-message <%= message_type %> "><%= message %></div>
+<% end %>
+<div class="text-center">
+  <h3>タグ編集</h3>
+  <%= render "layouts/errors", obj: @tag %>
+</div>
+
+<%= form_with model: [:admin, @tag] do |f| %>
+  <div class="row my-3">
+    <div class="col"></div>
+    <div class="col">
+      <%= f.text_field :name , class: "form-control" %>
+    </div>
+    <div class="col">
+      <%= f.submit "変更を保存", "data-confirm" => "本当に変更してもよろしいですか？", class: "btn btn-success" %>
+    </div>
+  </div>
+<% end %>
