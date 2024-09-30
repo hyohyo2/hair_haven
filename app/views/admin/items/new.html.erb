@@ -62,10 +62,15 @@
         <label>タグ</label>
       </div>
       <div class="col-6 text-center">
-        
+        <!--チェックボックスでレイアウトのため、チェックボックスとラベルで分ける-->
+        <%= f.collection_check_boxes(:tag_ids, @tags, :id, :name) do |b| %>
+          <span class="tag-item">
+            <%= b.check_box %>
+            <%= b.label %>
+          </span>
+        <% end %>
       </div>
     </div>
-
     <div class="field d-flex">
       <div class="col-3 text-center">
         <label>商品説明</label>

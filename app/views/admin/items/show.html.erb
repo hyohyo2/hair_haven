@@ -37,10 +37,17 @@
       <label>カラー：</label>
       <%= @item.color %>
     </div>
-    <!--ラベル改行修正-->
     <div class="my-3">
-      <label>詳細：</label>
-      <%= simple_format(@item.detail, sanitize: true) %>
+      <label>タグ：</label>
+      <% @item.tags.each do |tag| %>
+        <span class="tag-item"><%= tag.name %></span>
+      <% end %>
+    </div>
+    <!--ラベルレイアウト修正-->
+    <div class="my-3 row">
+      <div class="col-4"></div>
+      <label class="col-2">詳細：</label>
+      <div class="col-6 text-left"><%= simple_format(@item.detail, sanitize: true) %></div>
     </div>
     <div class="my-3">
       <label>ステータス：</label>
