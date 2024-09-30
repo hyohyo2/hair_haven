@@ -1,2 +1,20 @@
-<h1>Public::Notices#show</h1>
-<p>Find me in app/views/public/notices/show.html.erb</p>
+<div class="text-center mb-3">
+  <h3>
+    <%= link_to notices_path do %>
+      <i class="fa-solid fa-circle-chevron-left"></i>
+    <% end %>
+    お知らせ詳細
+  </h3>
+</div>
+
+<div class="notice-detail text-center">
+  <h4><%= @notice.title %></h4>
+  <%= @notice.created_at.strftime('%Y/%m/%d %H:%M') %>
+  <div class="my-3">
+    <label>ジャンル</label>
+    <%= @notice.notice_genre.name %>
+  </div>
+  <div class="my-3">
+    <%= simple_format(@notice.detail, sanitize: true) %>
+  </div>
+</div>
