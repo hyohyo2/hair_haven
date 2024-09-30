@@ -63,7 +63,7 @@
       </div>
       <div class="col-6 text-center">
         <%= f.collection_check_boxes(:tag_ids, @tags, :id, :name) do |b| %>
-          <span class="tag-item">
+          <span class="checkbox-item">
             <%= b.check_box %>
             <%= b.label %>
           </span>

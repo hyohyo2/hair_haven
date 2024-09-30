@@ -11,7 +11,7 @@
       <%= f.label "ジャンル" %>
     </div>
     <div class="col form-group">
-      <%= f.collection_select :notice_genre_id, NoticeGenre.all, :id, :name %>
+      <%= f.collection_select(:notice_genre_id, NoticeGenre.all, :id, :name) %>
     </div>
   </div>
   <div class="row text-center my-3">
