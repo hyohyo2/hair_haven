@@ -24,7 +24,7 @@
   <tbody>
     <% @tags.each do |tag| %>
     <tr>
-      <td><%= tag.name() %></td>
+      <td><%= tag.name %></td>
       <td>
         <%= link_to "編集する", edit_admin_tag_path(tag), class: "btn btn-sm btn-secondary" %>
       </td>
