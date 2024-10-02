@@ -7,6 +7,12 @@
     <div>
       <%= image_tag @item.get_image(300,300), class: "show-img" %>
     </div>
+    <!--タグ表示-->
+    <div class="my-3">
+      <% @item.tags.each do |tag| %>
+        <span class="checkbox-item"><%= tag.name %></span>
+      <% end %>
+    </div>
     <div class="my-3">
       <label>商品名：</label>
       <%= @item.name %>
@@ -21,34 +27,9 @@
         ー
       <% end %>
     </div>
-    <div class="my-3">
-      <label>税抜価格：</label>
-      <%= @item.price.to_s(:delimited) %>円(<%= @item.add_tax_price.to_s(:delimited) %>円)
-    </div>
-    <div class="my-3">
-      <label>サイズ：</label>
-      <%= @item.size_i18n %>
-    </div>
-    <div class="my-3">
-      <label>長さ：</label>
-      <%= @item.length_i18n %>
-    </div>
-    <div class="my-3">
-      <label>カラー：</label>
-      <%= @item.color %>
-    </div>
-    <div class="my-3">
-      <label>タグ：</label>
-      <% @item.tags.each do |tag| %>
-        <span class="checkbox-item"><%= tag.name %></span>
-      <% end %>
-    </div>
-    <!--ラベルレイアウト修正-->
-    <div class="my-3 row">
-      <div class="col-4"></div>
-      <label class="col-2">詳細：</label>
-      <div class="col-6 text-left"><%= simple_format(@item.detail, sanitize: true) %></div>
-    </div>
+
+    <%= render "admin/items/show", item: @item %>
+
     <div class="my-3">
       <label>ステータス：</label>
       <% if @item.is_active == true %>
