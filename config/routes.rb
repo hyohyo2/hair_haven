@@ -34,6 +34,8 @@ Rails.application.routes.draw do
   get '/users' => redirect("/users/sign_up")
   get '/users/information' => redirect("/users/information/edit")
 
+  get '/tag/:id/items' => 'public/tags#item_index', as: 'item_index'
+
   scope module: :public do
     resources :items, only:[:index, :show] do
       resource :favorite, only:[:create, :destroy]
