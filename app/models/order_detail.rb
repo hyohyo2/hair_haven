@@ -5,6 +5,7 @@ class OrderDetail < ApplicationRecord
   belongs_to :item
   belongs_to :order
 
+  # 商品ごとの小計
   def subtotal
     amount * item.add_tax_price
   end
