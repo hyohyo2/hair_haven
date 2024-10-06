@@ -23,7 +23,7 @@ class Order < ApplicationRecord
 
 
   def get_shipping_cost
-    SHIPPING_COST * TAX
+    (SHIPPING_COST * TAX).floor
   end
 
   # 注文個数の合計
@@ -46,7 +46,7 @@ class Order < ApplicationRecord
 
   # 消費税額のみ(請求金額-(請求金額/消費税))
   def get_only_tax
-    get_billed_amount - (get_billed_amount / TAX)
+    (get_billed_amount - (get_billed_amount / TAX)).floor
   end
 
   # 請求金額

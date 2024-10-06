@@ -21,9 +21,9 @@
       <td>
         <%= cart_item.subtotal.to_s(:delimited) %>円
       </td>
+      <!--商品ごとの小計をすべて合計するものを"total"に代入-->
+      <% total += cart_item.subtotal %>
     </tr>
-    <!--商品ごとの小計をすべて合計するものを"total"に代入-->
-    <% total += cart_item.subtotal %>
   <% end %>
 </table>
 

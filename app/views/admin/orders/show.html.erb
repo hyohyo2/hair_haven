@@ -42,7 +42,7 @@
         <% @order_details.each do |order_detail| %>
           <tr>
             <td><%= order_detail.item.name %></td>
-            <td><%= order_detail.item.add_tax_price.to_s(:delimited) %></td>
+            <td><%= order_detail.price.to_s(:delimited) %></td>
             <td><%= order_detail.amount %></td>
             <td><%= order_detail.subtotal.to_s(:delimited) %></td>
             <!--セレクトボタンにする-->
@@ -61,15 +61,15 @@
     </div>
     <div>
       <label>送料</label>
-      <%= @order.get_shipping_cost.floor %>円
+      <%= @order.shipping_cost %>円
     </div>
     <div>
       <label>内消費税</label>
-      <%= @order.get_only_tax.floor.to_s(:delimited) %>円
+      <%= @order.get_only_tax.to_s(:delimited) %>円
     </div>
     <div>
       <label>請求金額合計</label>
-      <%= @order.get_billed_amount.floor.to_s(:delimited) %>円
+      <%= @order.get_billed_amount.to_s(:delimited) %>円
     </div>
   </div>
 
