@@ -30,8 +30,10 @@ class Public::OrdersController < ApplicationController
       render :new
     end
     @cart_items = current_user.cart_items.all
-    # カラムのshipping_costとモデルに定義したget_shipping_costの値を同じにする
+    # 送料のカラムのshipping_costとモデルに定義したget_shipping_costの値を同じにする
     @order.shipping_cost = @order.get_shipping_cost
+    # 請求金額のカラムtotal_paymentとモデルに定義したget_billed_amoutの値を同じにする
+    @order.total_payment = @order.get_billed_amount
   end
 
   # 注文確定処理

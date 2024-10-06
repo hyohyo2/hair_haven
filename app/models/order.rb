@@ -9,7 +9,8 @@ class Order < ApplicationRecord
 
   # 郵便番号の正規表現
   POST_CODE = /\A\d{3}[-]\d{4}\z/
-  SHIPPING_COST = 880
+  SHIPPING_COST = 800
+  TAX = 1.1
 
   validates :user_id, presence: true
   validates :post_code, presence: true, format: { with: POST_CODE }
@@ -22,7 +23,35 @@ class Order < ApplicationRecord
 
 
   def get_shipping_cost
-    SHIPPING_COST
+    (SHIPPING_COST * TAX).floor
+  end
+
+  # 注文個数の合計
+  def get_total_amount
+    total_amount = 0
+    order_details.each do |order_detail|
+      total_amount += order_detail.amount
+    end
+    total_amount
+  end
+
+  # 商品金額合計
+  def get_total_price
+    total_price = 0
+    order_details.each do |order_detail|
+      total_price += order_detail.subtotal
+    end
+    total_price
+  end
+
+  # 消費税額のみ(請求金額-(請求金額/消費税))
+  def get_only_tax
+    (get_billed_amount - (get_billed_amount / TAX)).floor
+  end
+
+  # 請求金額
+  def get_billed_amount
+    get_total_price + get_shipping_cost
   end
 
 end
