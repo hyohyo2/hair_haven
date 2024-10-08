@@ -1,24 +1,25 @@
 <h3>注文確認</h3>
-<% if current_user.cart_items.present? %>
+<% if current_user.order.present? %>
   <div class="text-center">
       <% @orders.each do |order| %>
         <div class="item-index">
-          <div>
-            <%= order.created_at.strftime('%Y/%m/%d %H:%M') %>
-            <%= order.total_payment.to_s(:delimited) %>円
-            <%= order.order_status_i18n %>
+          <div class="row">
+            <div class="col"><label>注文日時：</label><%= order.created_at.strftime('%Y/%m/%d %H:%M') %></div>
+            <div class="col text-left"><label>請求額：</label><%= order.get_billed_amount.to_s(:delimited) %>円</div>
+            <div class="col text-left">製作状況：<label></label><%= order.order_status_i18n %></div>
           </div>
-          <div>
-            <%= order.post_code %>
-            <%= order.address %>
-            <%= order.name %>
+          <div class="row">
+            <div class="col"><label>配送先：</label>〒<%= order.post_code %></div>
+            <div class="col text-left"><%= order.address %></div>
+            <div class="col text-left"><%= order.name %></div>
           </div>
-          <div>
-            <% order.order_details.each do |order_detail| %>
-              <%= order_detail.item.name %>
-              <%= order_detail.amount %>
-            <% end %>
-          </div>
+          <% order.order_details.each do |order_detail| %>
+            <div class="row my-3">
+              <div class="col"><%= image_tag order_detail.item.get_image(150,200), class: "index-img"  %></div>
+              <div class="col item-label"><label>商品名：</label><%= order_detail.item.name %></div>
+              <div class="col item-label"><label>個数：</label><%= order_detail.amount %></div>
+            </div>
+          <% end %>
           <%= link_to "詳細", order_path(order.id), class: "btn btn-primary" %>
         </div>
       <% end %>

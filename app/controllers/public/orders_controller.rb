@@ -74,6 +74,7 @@ class Public::OrdersController < ApplicationController
   # 注文履歴
   def index
     @orders = Order.where(user_id: current_user.id)
+    
   end
 
   # 注文履歴詳細
