@@ -4,6 +4,10 @@ class Public::CartItemsController < ApplicationController
   # カート内商品一覧
   def index
     @cart_items = current_user.cart_items.all
+    @total_price = 0
+    @cart_items.each do |cart_item|
+      @total_price += cart_item.subtotal
+    end
   end
 
   # カート内商品データ登録処理
