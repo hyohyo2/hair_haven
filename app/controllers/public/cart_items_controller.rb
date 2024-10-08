@@ -14,6 +14,11 @@ class Public::CartItemsController < ApplicationController
   def create
     # カート商品を登録
     @cart_item = current_user.cart_items.new(cart_items_params)
+    @cart_items = current_user.cart_items.all
+    @total_price = 0
+    @cart_items.each do |cart_item|
+      @total_price += cart_item.subtotal
+    end
     # もし同じ商品が元々ある場合
     if current_user.cart_items.find_by(item_id: params[:cart_item][:item_id]).present?
 

@@ -25,6 +25,10 @@ class Order < ApplicationRecord
   def get_shipping_cost
     (SHIPPING_COST * TAX).floor
   end
+  
+  def get_tax
+    TAX
+  end
 
   # 注文個数の合計
   def get_total_amount
@@ -52,6 +56,14 @@ class Order < ApplicationRecord
   # 請求金額
   def get_billed_amount
     get_total_price + get_shipping_cost
+  end
+  
+  def get_cartitem_total_price
+    total_price = 0
+    cartitems.each do |cart_item|
+      total_price += cart_item.subtotal
+    end
+    total_price
   end
 
 end

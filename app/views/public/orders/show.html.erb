@@ -53,7 +53,7 @@
   <tr>
     <th>請求金額</th>
     <td>
-      <%= @order.total_payment.to_s(:delimited) %>円
+      <%= @order.get_billed_amount.to_s(:delimited) %>円
     </td>
   </tr>
   <tr>
