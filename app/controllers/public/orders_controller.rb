@@ -30,10 +30,23 @@ class Public::OrdersController < ApplicationController
       render :new
     end
     @cart_items = current_user.cart_items.all
+
+    # カート内商品の合計金額
+    @cart_item_total_price = 0
+    @cart_items.each do |cart_item|
+      @cart_item_total_price += cart_item.subtotal
+    end
+    # orderテーブルのtotal_paymentカラムに@cart_item_total_priceを代入
+    @order.total_payment = @cart_item_total_price
+
     # 送料のカラムのshipping_costとモデルに定義したget_shipping_costの値を同じにする
     @order.shipping_cost = @order.get_shipping_cost
-    # 請求金額のカラムtotal_paymentとモデルに定義したget_billed_amoutの値を同じにする
-    @order.total_payment = @order.get_billed_amount
+
+    # カート内商品の請求金額の変数(カート内商品の合計金額+送料)
+    @cart_item_billed_amount = @cart_item_total_price + @order.shipping_cost
+
+    # 内消費税金額
+    @cart_item_only_tax = @cart_item_billed_amount - (@cart_item_billed_amount / @order.get_tax)
   end
 
   # 注文確定処理

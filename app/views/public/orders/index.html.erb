@@ -1,24 +1,28 @@
 <h3>注文確認</h3>
-<div class="text-center">
-    <% @orders.each do |order| %>
-      <div class="item-index">
-        <div>
-          <%= order.created_at.strftime('%Y/%m/%d %H:%M') %>
-          <%= order.total_payment.to_s(:delimited) %>円
-          <%= order.order_status_i18n %>
+<% if current_user.cart_items.present? %>
+  <div class="text-center">
+      <% @orders.each do |order| %>
+        <div class="item-index">
+          <div>
+            <%= order.created_at.strftime('%Y/%m/%d %H:%M') %>
+            <%= order.total_payment.to_s(:delimited) %>円
+            <%= order.order_status_i18n %>
+          </div>
+          <div>
+            <%= order.post_code %>
+            <%= order.address %>
+            <%= order.name %>
+          </div>
+          <div>
+            <% order.order_details.each do |order_detail| %>
+              <%= order_detail.item.name %>
+              <%= order_detail.amount %>
+            <% end %>
+          </div>
+          <%= link_to "詳細", order_path(order.id), class: "btn btn-primary" %>
         </div>
-        <div>
-          <%= order.post_code %>
-          <%= order.address %>
-          <%= order.name %>
-        </div>
-        <div>
-          <% order.order_details.each do |order_detail| %>
-            <%= order_detail.item.name %>
-            <%= order_detail.amount %>
-          <% end %>
-        </div>
-        <%= link_to "詳細", order_path(order.id), class: "btn btn-primary" %>
-      </div>
-    <% end %>
-</div>
+      <% end %>
+  </div>
+<% else %>
+ <h2 class="text-center my-5">注文した商品が表示されます。</h2>
+<% end %>
