@@ -51,6 +51,7 @@ Rails.application.routes.draw do
 # 管理者用
   namespace :admin do
     root to: 'homes#top'
+    get 'users/:id/orders' => 'users#order_index', as: 'order_index'
     resources :items, only:[:new, :create, :index, :show, :edit, :update] do
       resources :reviews, only:[:index, :destroy]
     end
