@@ -1,23 +1,42 @@
-<div class="my-3">
-  <label>税抜価格：</label>
-  <%= item.price.to_s(:delimited) %>円(<%= item.add_tax_price.to_s(:delimited) %>円)
+<div class="row my-3">
+  <div class="col text-right">
+    <label>税抜価格：</label>
+  </div>
+  <div class="col text-left">
+    <%= item.price.to_s(:delimited) %>円(<%= item.add_tax_price.to_s(:delimited) %>円)
+  </div>
 </div>
-<div class="my-3">
-  <label>サイズ：</label>
-  <%= item.size_i18n %>
+<div class="row my-3">
+  <div class="col text-right">
+    <label>サイズ：</label>
+  </div>
+  <div class="col text-left">
+    <%= item.size_i18n %>
+  </div>
 </div>
-<div class="my-3">
-  <label>長さ：</label>
-  <%= item.length_i18n %>
+<div class="row my-3">
+  <div class="col text-right">
+    <label>長さ：</label>
+  </div>
+  <div class="col text-left">
+    <%= item.length_i18n %>
+  </div>
 </div>
-<div class="my-3">
-  <label>カラー：</label>
-  <%= item.color %>
+<div class="row my-3">
+  <div class="col text-right">
+    <label>カラー：</label>
+  </div>
+  <div class="col text-left">
+    <%= item.color %>
+  </div>
 </div>
 
 <!--ラベルレイアウト修正-->
-<div class="my-3 row">
-  <div class="col-4"></div>
-  <label class="col-2">詳細：</label>
-  <div class="col-6 text-left"><%= simple_format(item.detail, sanitize: true) %></div>
+<div class="row my-3">
+  <div class="col text-right">
+    <label>詳細：</label>
+  </div>
+  <div class="col text-left">
+    <%= simple_format(item.detail, sanitize: true) %>
+  </div>
 </div>

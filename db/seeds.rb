@@ -156,3 +156,22 @@ address3 = Address.find_or_create_by!(name: "田中四葉") do |address|
   address.address = "広島県広島市"
   address.name = "田中四葉"
 end
+
+# order1 = Order.find_or_create_by!(name: "田中花子") do |order|
+#   order.user_id = user1.id
+#   order.post_code = "234-5678"
+#   order.address = "沖縄県那覇市"
+#   order.name = "田中花子"
+#   order.shipping_cost = 800
+#   order.total_payment = "60000"
+#   order.payment_method = 0
+#   order.order_status = 0
+# end
+
+# order_detail1 = OrderDetail.find_or_create_by!(order_id: 1) do |order_detail|
+#   order_detail.order_id = order1.id
+#   order_detail.item_id = item1.id
+#   order_detail.price = "30000"
+#   order_detail.amount = 2
+#   order_detail.making_status = 0
+# end
