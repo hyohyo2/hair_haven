@@ -17,20 +17,28 @@
         </span>
       <% end %>
     </div>
-    <div class="my-3">
-      <label>商品名：</label>
-      <%= @item.name %>
-      <span id="favorite_buttons_<%= @item.id %>">
-        <%= render "public/favorites/btn", item: @item %>
-      </span>
+    <div class="row my-3">
+      <div class="col text-right">
+        <label>商品名：</label>
+      </div>
+      <div class="col text-left">
+        <%= @item.name %>
+        <span id="favorite_buttons_<%= @item.id %>">
+          <%= render "public/favorites/btn", item: @item %>
+        </span>
+      </div>
     </div>
-    <div class="my-3">
-      <label>評価：</label>
-      <% if @item.reviews.present? %>
-        <%= @item.reviews.average(:star).floor(1) %>(<%= @item.reviews.count(:star) %>)
-      <% else %>
-        ー
-      <% end %>
+    <div class="row my-3">
+      <div class="col text-right">
+        <label>評価：</label>
+      </div>
+      <div class="col text-left">
+        <% if @item.reviews.present? %>
+          <%= @item.reviews.average(:star).floor(1) %>(<%= @item.reviews.count(:star) %>)
+        <% else %>
+          ー
+        <% end %>
+      </div>
     </div>
 
     <%= render "admin/items/show", item: @item %>
@@ -39,9 +47,13 @@
     <div>
       <% if user_signed_in? %>
         <%= form_with model: @cart_item, local: true do |f| %>
-          <div>
-            <%= f.label :amount , "個数選択" %>
-            <%= f.select :amount, *[1..10] %>
+          <div class="row my-3">
+            <div class="col text-right">
+              <%= f.label :amount , "個数選択：" %>
+            </div>
+            <div class="col text-left">
+              <%= f.select :amount, *[1..10] %>
+            </div>
           </div>
           <div class="my-3">
             <%= f.hidden_field :item_id, :value => @item.id %>

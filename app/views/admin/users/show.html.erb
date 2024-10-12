@@ -1,72 +1,85 @@
-<div class="container my-3">
-  <% flash.each do |message_type, message| %>
-    <div class="flash-message <%= message_type %>"><%= message %></div>
-  <% end %>
-  <div class="text-center">
-    <div class="my-3">
-      <label>
-        会員ID：
-      </label>
-      <%= @user.id %>
-    </div>
-    <div class="my-3">
-      <label>
-        氏名：
-      </label>
-      <%= @user.last_name %>
-      <%= @user.first_name %>
-    </div>
-    <div class="my-3">
-      <label>
-        氏名(カナ)：
-      </label>
-      <%= @user.last_name_kana %>
-      <%= @user.first_name_kana %>
-    </div>
-    <div class="my-3">
-      <label>
-        性別：
-      </label>
-      <%= @user.gender_i18n %>
-    </div>
-    <div class="my-3">
-      <label>
-        メールアドレス：
-      </label>
-      <%= @user.email %>
-    </div>
-    <div class="my-3">
-      <label>
-        郵便番号：
-      </label>
-      〒<%= @user.post_code %>
-    </div>
-    <div class="my-3">
-      <label>
-        住所：
-      </label>
-      <%= @user.address %>
-    </div>
-    <div class="my-3">
-      <label>
-        電話番号：
-      </label>
-      <%= @user.telephone_number %>
-    </div>
-    <div class="my-3">
-      <label>
-        ステータス：
-      </label>
-      <% if @user.is_active == true %>
-        <span class="text-primary">有効</span>
-      <% else %>
-        <span class="text-secondary">無効</span>
-      <% end %>
-    </div>
-    <div>
-      <%= link_to "編集する", edit_admin_user_path, class: "btn btn-secondary" %>
-      <!--ユーザー毎の注文履歴一覧にすること-->
-      <%= link_to "注文履歴", admin_root_path, class: "btn btn-success" %>
-    </div>
+<% flash.each do |message_type, message| %>
+  <div class="flash-message <%= message_type %>"><%= message %></div>
+<% end %>
+<div class="row my-3">
+  <div class="col text-right">
+    <label>会員ID：</label>
   </div>
+  <div class="col text-left">
+    <%= @user.id %>
+  </div>
+</div>
+<div class="row my-3">
+  <div class="col text-right">
+    <label>氏名：</label>
+  </div>
+  <div class="col text-left">
+    <%= @user.full_name %>
+  </div>
+</div>
+<div class="row my-3">
+  <div class="col text-right">
+    <label>氏名(カナ)：</label>
+  </div>
+  <div class="col text-left">
+    <%= @user.last_name_kana %>
+    <%= @user.first_name_kana %>
+  </div>
+</div>
+<div class="row my-3">
+  <div class="col text-right">
+    <label>性別：</label>
+  </div>
+  <div class="col text-left">
+    <%= @user.gender_i18n %>
+  </div>
+</div>
+<div class="row my-3">
+  <div class="col text-right">
+    <label>メールアドレス：</label>
+  </div>
+  <div class="col text-left">
+    <%= @user.email %>
+  </div>
+</div>
+<div class="row my-3">
+  <div class="col text-right">
+    <label>郵便番号：</label>
+  </div>
+  <div class="col text-left">
+    〒<%= @user.post_code %>
+  </div>
+</div>
+<div class="row my-3">
+  <div class="col text-right">
+    <label>住所：</label>
+  </div>
+  <div class="col text-left">
+    <%= @user.address %>
+  </div>
+</div>
+<div class="row my-3">
+  <div class="col text-right">
+    <label>電話番号：</label>
+  </div>
+  <div class="col text-left">
+    <%= @user.telephone_number %>
+  </div>
+</div>
+<div class="row my-3">
+  <div class="col text-right">
+    <label>ステータス：</label>
+  </div>
+  <div class="col text-left">
+    <% if @user.is_active == true %>
+      <span class="text-primary">有効</span>
+    <% else %>
+      <span class="text-secondary">無効</span>
+    <% end %>
+  </div>
+</div>
+<div class="text-center">
+  <%= link_to "編集する", edit_admin_user_path, class: "btn btn-secondary" %>
+  <!--ユーザー毎の注文履歴一覧にすること-->
+  <%= link_to "注文履歴", admin_order_index_path(@user), class: "btn btn-success" %>
 </div>

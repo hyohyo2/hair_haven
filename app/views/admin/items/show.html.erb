@@ -1,24 +1,30 @@
-<div class="container my-3">
-  <% flash.each do |message_type, message| %>
-    <div class="flash-message <%= message_type %>"><%= message %></div>
-  <% end %>
-  <div class="text-center">
-    <h2 class="my-3">商品詳細</h2>
-    <div>
-      <%= image_tag @item.get_image(300,300), class: "show-img" %>
-    </div>
-    <!--タグ表示-->
-    <div class="my-3">
-      <% @item.tags.each do |tag| %>
-        <span class="checkbox-item"><%= tag.name %></span>
-      <% end %>
-    </div>
-    <div class="my-3">
+<% flash.each do |message_type, message| %>
+  <div class="flash-message <%= message_type %>"><%= message %></div>
+<% end %>
+<div class="text-center">
+  <h2 class="my-3">商品詳細</h2>
+  <div>
+    <%= image_tag @item.get_image(300,300), class: "show-img" %>
+  </div>
+  <!--タグ表示-->
+  <div class="my-3">
+    <% @item.tags.each do |tag| %>
+      <span class="checkbox-item"><%= tag.name %></span>
+    <% end %>
+  </div>
+  <div class="row my-3">
+    <div class="col text-right">
       <label>商品名：</label>
+    </div>
+    <div class="col text-left">
       <%= @item.name %>
     </div>
-    <div class="my-3">
+  </div>
+  <div class="row my-3">
+    <div class="col text-right">
       <label>評価：</label>
+    </div>
+    <div class="col text-left">
       <% if @item.reviews.present? %>
         <%= link_to admin_item_reviews_path(@item) do %>
           <%= @item.reviews.average(:star).floor(1) %>(<%= @item.reviews.count(:star) %>)
@@ -27,19 +33,23 @@
         ー
       <% end %>
     </div>
+  </div>
 
-    <%= render "admin/items/show", item: @item %>
+  <%= render "admin/items/show", item: @item %>
 
-    <div class="my-3">
+  <div class="row my-3">
+    <div class="col text-right">
       <label>ステータス：</label>
+    </div>
+    <div class="col text-left">
       <% if @item.is_active == true %>
         <span class="text-success">販売中</span>
       <% else %>
         <span class="text-secondary">販売停止中</span>
       <% end %>
     </div>
-    <div>
-      <%= link_to "編集する", edit_admin_item_path, class: "btn btn-secondary" %>
-    </div>
+  </div>
+  <div>
+    <%= link_to "編集する", edit_admin_item_path, class: "btn btn-secondary" %>
   </div>
 </div>

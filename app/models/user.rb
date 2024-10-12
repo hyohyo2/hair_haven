@@ -26,7 +26,7 @@ class User < ApplicationRecord
   validates :is_active, inclusion: { in: [true,false] }
 
   def full_name
-    last_name + first_name
+    last_name + " " + first_name
   end
 
 
