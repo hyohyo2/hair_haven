@@ -1,65 +1,70 @@
-<div class="container my-3">
-  <% flash.each do |message_type, message| %>
-    <div class="flash-message <%= message_type %>"><%= message %></div>
-  <% end %>
+<% flash.each do |message_type, message| %>
+  <div class="flash-message <%= message_type %>"><%= message %></div>
+<% end %>
 
-  <div>
-    <%= current_user.last_name %>
-    <%= current_user.first_name %>
-    さん
+<div>
+  <%= current_user.full_name %>さん
+</div>
+
+<div>
+  <%= link_to "会員情報編集", edit_user_path, class: "btn btn-secondary" %>
+  <%= link_to "注文履歴", orders_path, class: "btn btn-success" %>
+  <%= link_to "配送先一覧", addresses_path, class: "btn btn-info" %>
+</div>
+<div class="row my-3">
+  <div class="col text-right">
+    <lable>氏名：</lable>
   </div>
-
-  <div>
-    <%= link_to "会員情報編集", edit_user_path, class: "btn btn-secondary" %>
-    <%= link_to "注文履歴", orders_path, class: "btn btn-success" %>
-    <%= link_to "配送先一覧", addresses_path, class: "btn btn-info" %>
+  <div class="col text-left">
+    <%= current_user.full_name %>
   </div>
-  <div class="text-center">
-    <div class="my-3">
-      <span class="col-3">
-        氏名：
-      </span>
-      <%= current_user.last_name %>
-      <%= current_user.first_name %>
-    </div>
-    <div class="my-3">
-      <span class="col-3">
-        氏名(カナ)：
-      </span>
-      <%= current_user.last_name_kana %>
-      <%= current_user.first_name_kana %>
-    </div>
-    <div class="my-3">
-      <span class="col-3">
-        性別：
-      </span>
-      <%= current_user.gender_i18n %>
-    </div>
-    <div class="my-3">
-      <span class="col-3">
-        メールアドレス：
-      </span>
-      <%= current_user.email %>
-    </div>
-    <div class="my-3">
-      <span class="col-3">
-        郵便番号：
-      </span>
-      〒<%= current_user.post_code %>
-    </div>
-    <div class="my-3">
-      <span class="col-3">
-        ご住所：
-      </span>
-      <%= current_user.address %>
-    </div>
-    <div class="my-3">
-      <span class="col-3">
-        電話番号：
-      </span>
-      <%= current_user.telephone_number %>
-    </div>
+</div>
+<div class="row my-3">
+  <div class="col text-right">
+    <lable>氏名(カナ)：</lable>
   </div>
-
-
+  <div class="col text-left">
+    <%= current_user.last_name_kana %>
+    <%= current_user.first_name_kana %>
+  </div>
+</div>
+<div class="row my-3">
+  <div class="col text-right">
+    <lable>性別：</lable>
+  </div>
+  <div class="col text-left">
+    <%= current_user.gender_i18n %>
+  </div>
+</div>
+<div class="row my-3">
+  <div class="col text-right">
+    <lable>メールアドレス：</lable>
+  </div>
+  <div class="col text-left">
+    <%= current_user.email %>
+  </div>
+</div>
+<div class="row my-3">
+  <div class="col text-right">
+    <lable>郵便番号：</lable>
+  </div>
+  <div class="col text-left">
+    〒<%= current_user.post_code %>
+  </div>
+</div>
+<div class="row my-3">
+  <div class="col text-right">
+    <lable>ご住所：</lable>
+  </div>
+  <div class="col text-left">
+    <%= current_user.address %>
+  </div>
+</div>
+<div class="row my-3">
+  <div class="col text-right">
+    <lable>電話番号：</lable>
+  </div>
+  <div class="col text-left">
+    <%= current_user.telephone_number %>
+  </div>
 </div>
