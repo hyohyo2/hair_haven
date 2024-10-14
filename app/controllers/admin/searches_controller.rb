@@ -1,8 +1,8 @@
 class Admin::SearchesController < ApplicationController
-  before_action :authenticate_admin!
-  def form
+  def search
   end
-
+  
   def result
+    
   end
 end

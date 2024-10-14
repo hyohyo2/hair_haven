@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'searches/search'
+  end
+  namespace :public do
+    get 'searches/search'
+  end
 # 顧客用
 # URL /users/sign_in ...
   devise_for :users,skip: [:passwords], controllers: {
@@ -35,8 +41,8 @@ Rails.application.routes.draw do
 
   get '/tag/:id/items' => 'public/tags#item_index', as: 'item_index'
 
-  get '/search_form' => 'public/searches#form', as: 'search_form'
-  get '/search_result' => 'public/searches#result', as: 'search_result'
+  get '/search' => 'public/searches#search', as: 'search'
+  get '/search_result' => 'publicsearches#result', as: 'search_result'
 
   scope module: :public do
     resources :items, only:[:index, :show] do
@@ -54,7 +60,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'homes#top'
     get 'users/:id/orders' => 'users#order_index', as: 'order_index'
-    get '/search_form' => 'searches#form', as: 'search_form'
+    get '/search' => 'searches#search', as: 'search'
     get '/search_result' => 'searches#result', as: 'search_result'
     
     resources :items, only:[:new, :create, :index, :show, :edit, :update] do

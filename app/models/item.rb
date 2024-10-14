@@ -42,5 +42,10 @@ class Item < ApplicationRecord
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
+  
+  # 検索機能
+  def self.search_for(content)
+    Item.where("name LIKE ?", "%" + content + "%" )
+  end
 
 end
