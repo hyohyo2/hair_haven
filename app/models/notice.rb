@@ -9,5 +9,5 @@ class Notice < ApplicationRecord
   def self.search_for(content)
     Notice.where("title LIKE ?", "%" + content + "%" )
   end
-
+  
 end

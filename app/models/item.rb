@@ -43,9 +43,13 @@ class Item < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
 
-  # 検索機能
+  # 検索機能(エンドユーザー/有効商品のみ対象)
   def self.search_for(content)
     Item.where("name LIKE ?", "%" + content + "%" ).where(is_active: true)
+  end
+  #検索機能(管理者/全商品対象)
+  def self.admin_search_for(content)
+    Item.where("name LIKE ?", "%" + content + "%")
   end
 
 end

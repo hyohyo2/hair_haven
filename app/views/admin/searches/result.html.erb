@@ -1,2 +1,15 @@
-<h1>Admin::Searches#result</h1>
-<p>Find me in app/views/admin/searches/result.html.erb</p>
+<div class="text-center">
+  <% if @model == "item" %>
+    <h3>商品検索結果"<%= @content %>"</h3>
+    <p>(<%= @records.count %>)</p>
+    <%= render "admin/items/index", items: @records %>
+  <% elsif @model == "notice" %>
+    <h3>お知らせ検索結果 "<%= @content %>"</h3>
+    <p>(<%= @records.count %>)</p>
+    <%= render "admin/notices/index", notices: @records %>
+  <% elsif @model == "user" %>
+    <h3>会員検索結果 "<%= @content %>"</h3>
+    <p>(<%= @records.count %>)</p>
+    <%= render "admin/users/index", users: @records %>
+  <% end %>
+</div>

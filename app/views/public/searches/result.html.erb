@@ -1,11 +1,11 @@
 <div class="text-center">
   <% if @model == "item" %>
-  <h3>商品検索結果"<%= @content %>"</h3>
-  <p>(<%= @records.count %>)</p>
-  <%= render "public/items/index", items: @records %>
-<% elsif @model == "notice" %>
-  <h3>お知らせ検索結果 "<%= @content %>"</h3>
-  <p>(<%= @records.count %>)</p>
-  <%= render "public/notices/index", notices: @records %>
+    <h3>商品検索結果"<%= @content %>"</h3>
+    <p>(<%= @records.count %>)</p>
+    <%= render "public/items/index", items: @records %>
+  <% elsif @model == "notice" %>
+    <h3>お知らせ検索結果 "<%= @content %>"</h3>
+    <p>(<%= @records.count %>)</p>
+    <%= render "public/notices/index", notices: @records %>
 <% end %>
 </div>

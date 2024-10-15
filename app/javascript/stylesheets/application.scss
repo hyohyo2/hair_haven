@@ -109,6 +109,10 @@ li{
 .select-btn{
   display: flex;
 }
+// セレクトボックスの文字を中央寄せ
+.select{
+  text-align-last: center;
+}
 
 // .review-index:nth-child(1){
 //   margin-top: 0;
