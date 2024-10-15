@@ -6,4 +6,8 @@ class Notice < ApplicationRecord
   validates :detail, presence: true
   validates :notice_genre_id, presence: true
 
+  def self.search_for(content)
+    Notice.where("title LIKE ?", "%" + content + "%" )
+  end
+
 end

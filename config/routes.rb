@@ -1,11 +1,4 @@
 Rails.application.routes.draw do
-
-  namespace :admin do
-    get 'searches/search'
-  end
-  namespace :public do
-    get 'searches/search'
-  end
 # 顧客用
 # URL /users/sign_in ...
   devise_for :users,skip: [:passwords], controllers: {
@@ -42,7 +35,7 @@ Rails.application.routes.draw do
   get '/tag/:id/items' => 'public/tags#item_index', as: 'item_index'
 
   get '/search' => 'public/searches#search', as: 'search'
-  get '/search_result' => 'publicsearches#result', as: 'search_result'
+  get '/search_result' => 'public/searches#result', as: 'search_result'
 
   scope module: :public do
     resources :items, only:[:index, :show] do
