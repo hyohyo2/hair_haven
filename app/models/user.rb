@@ -29,5 +29,9 @@ class User < ApplicationRecord
     last_name + " " + first_name
   end
 
+  def self.admin_search_for(content)
+    User.where("last_name LIKE ? OR first_name LIKE ?", "%" + content + "%", "%" + content + "%")
+  end
+
 
 end
